@@ -13,11 +13,17 @@ use App\Http\Controllers\UsersController;
 |
 */
 
+/*Route::get('/', function () {
+    return view('Home');
+});
+Route::get('/usuarios', 'UsersController@index');
+Route::get('users/register','UsersController@register');
+Route::get('users/login','UsersController@login');
+Route::post('/CreateUser','UsersController@createUser');
+Route::get('/verifyUser/{email}','UsersController@verifyUser');*/
+
+Auth::routes();
 Route::get('/', function () {
     return view('Home');
 });
-Route::get('users/register','UsersController@register');
-Route::get('users/login','UsersController@login');
-
-
-Route::get('/usuarios', 'UsersController@index');
+Route::get('/home', 'HomeController@index')->name('home');
