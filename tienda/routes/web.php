@@ -23,7 +23,7 @@ Route::post('/CreateUser','UsersController@createUser');
 Route::get('/verifyUser/{email}','UsersController@verifyUser');*/
 
 Auth::routes();
-Route::get('/', function () {
-    return view('Home');
-});
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/Users/{id}', 'UsersController@viewUsers')->middleware('auth');
+Route::get('/product/category/{Category}', 'ProductsController@viewCategory');

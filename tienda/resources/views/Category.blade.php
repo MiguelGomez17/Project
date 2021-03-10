@@ -5,18 +5,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Pagina principal</div>
+                <div class="panel-heading"><?= e($categoria)?></div>
 
                 <div class="panel-body">
-                    @if (Auth::user())
-                        <div class="alert alert-success">
-                            Bienvenido {{ Auth::user()->name }}
-                        </div>
-                    @else
-                    <div class="alert alert-info">
-                            <a href="{{ route('login') }}"><strong>Inicia sesion</strong></a> para realizar compras
-                        </div>
-                    @endif
                     <div class="container">
                         @foreach ($products as $product)
                             <div class="card mb-3" style="max-width: 540px;">
@@ -35,11 +26,12 @@
                                 </div>
                             </div>&nbsp;&nbsp;&nbsp;&nbsp;
                         @endforeach
+                        {{ $products->links() }}
                     </div>
-                    {{ $products->links() }}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
