@@ -7,11 +7,11 @@ use App\product;
 
 class ProductsController extends Controller
 {
-    public function viewCategory($Category)
+    public function viewCategory($category)
     {
-        $Product = Product::where('Category', $Category)->paginate(10);
+        $Product = Product::where('category', $category)->paginate(10);
         if($Product){
-            return view('Category',['products'=>$Product,'categoria'=>$Category]);
+            return view('Category',['products'=>$Product,'categoria'=>$category]);
         }else{
             return redirect()->route('home');
         }

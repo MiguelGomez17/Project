@@ -42,6 +42,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/Stadistics">Estadisticas</a>
                         </li>
+                        @if(Auth::user())
+                            @if(Auth::user()->type=='admin')
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="/Admin">Administrar</a>
+                                </li>
+                            @endif
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

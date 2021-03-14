@@ -19,7 +19,7 @@
                     @endif
                     <div class="container">
                         @foreach ($products as $product)
-                            <div class="card mb-3" style="max-width: 540px;">
+                            <div class="card mb-3" style="max-width: 800px;">
                                 <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="{{ $product->image }}" alt="{{ $product->name }}" style="max-width: 18rem;">
@@ -27,9 +27,10 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                     <h5 class="card-title">{{ $product->name }}</h5>
-                                    <p class="card-text">{{ $product->description }}</p>
-                                    <p class="card-text">${{ $product->price }}</p>
-                                    <a href="/product/category/{{ $product->Category }}" class="card-text">{{ $product->Category }}</a><br>
+                                    <p class="card-text">Descripcion: {{ $product->description }}</p>
+                                    <p class="card-text">Precio: ${{ $product->price }}</p>
+                                    <p class="card-text">Existencias: {{ $product->inventory }}</p>
+                                    <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                     <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas</a>
                                     </div>
                                 </div>

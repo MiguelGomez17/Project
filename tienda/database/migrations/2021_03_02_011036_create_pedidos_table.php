@@ -17,6 +17,8 @@ class CreatePedidosTable extends Migration
             $table->increments('id');
             $table->string('userid');
             $table->string('productid');
+            $table->string('direccion');
+            $table->boolean('entregado')->default(false);
             $table->timestamp('fechapedido');
             $table->timestamps();
         });
