@@ -37,7 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link text-light" href="/products">Productos</a>
+                            <a class="nav-link text-light" href="/product">Productos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/stadistics">Estadisticas</a>

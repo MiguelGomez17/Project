@@ -30,9 +30,9 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        return in_array($user->type,[
+        /*return in_array($user->type,[
             'admin'
-        ]);
+        ]);*/
     }
 
     /**
@@ -44,9 +44,9 @@ class ProductPolicy
      */
     public function update(User $user, product $product)
     {
-        return in_array($user->type,[
+        /*return in_array($user->type,[
             'admin'
-        ]);
+        ]);*/
     }
 
     /**
@@ -58,8 +58,8 @@ class ProductPolicy
      */
     public function delete(User $user, product $product)
     {
-        return in_array($user->type,[
+        /*return in_array($user->type,[
             'admin'
-        ]);
+        ]);*/
     }
 }

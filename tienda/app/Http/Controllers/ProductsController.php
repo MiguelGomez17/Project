@@ -51,4 +51,30 @@ class ProductsController extends Controller
         $Product->delete();
         return redirect('/home');
     }
+    public function viewCreate()
+    {
+        return view('CreateProduct');
+    }
+    public function create(Request $request){
+        $validateData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'brand' => 'required',
+            'image' => 'required',
+            'inventory' => 'required|numeric',
+            'category' => 'required'
+        ]);
+        $data = request()->all();
+        $product = new product;
+        $product->name = $data['name'];
+        $product->description = $data['description'];
+        $product->price = $data['price'];
+        $product->brand = $data['brand'];
+        $product->image = $data['image'];
+        $product->inventory = $data['inventory'];
+        $product->category = $data['category'];
+        $product->save();
+        return redirect('/product');
+    }
 }

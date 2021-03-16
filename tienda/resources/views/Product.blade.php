@@ -22,11 +22,13 @@
                             <p class="card-text">Precio: ${{ $Product->price }}</p>
                             <p class="card-text">Existencias: {{ $Product->inventory }}</p>
                             <a href="/product/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
-                            <a href="/buy/{{ $Product->id }}" class="btn btn-primary">Comprar</a>
                             @if(Auth::user())
+                                <a href="/buy/{{ $Product->id }}" class="btn btn-primary">Comprar</a>
                                 @if(Auth::user()->type=='admin')
                                     <a href="/product/delete/{{ $Product->id }}" class="btn btn-danger">Eliminar</a>
                                 @endif
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-info">Inicia sesion para comprar</a>
                             @endif
                             </div>
                         </div>

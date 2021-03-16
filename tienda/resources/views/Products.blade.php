@@ -7,6 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Productos</div>
                 <div class="panel-body">
+                    @if (Auth::user())
+                        @if (Auth::user()->type=='admin')
+                            <a href="/products/create" class="btn btn-success">Agregar producto</a>
+                        @endif
+                    @endif
                     <div class="container">
                         @foreach ($products as $product)
                             <div class="card mb-3" style="max-width: 800px;">
