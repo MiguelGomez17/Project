@@ -8,6 +8,6 @@ class Pedido extends Model
 {
     //protected $table = "pedidos"
     protected $fillable = [
-        'userid', 'productid', 'direccion', 'entregado', 'fechapedido'
+        'userid', 'productid', 'name','direccion', 'entregado', 'fechapedido', 'fechaentrega'
     ];
 }

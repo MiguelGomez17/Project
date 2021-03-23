@@ -10,11 +10,11 @@
                         <?= e($Usuario['name']) ?>
                     </div>
                     @if($Usuario['type']=='admin')
-                        <div class="panel-body">
+                        <div class="alert alert-warning">
                             Administrador
                         </div>
                     @endif
-                    @if (Auth::user()->id===$Usuario['id'])
+                    @if (Auth::user()->id===$Usuario['id']||Auth::user()->type==='admin')
                         <div class="panel-body">
                             <h1>Pedidos realizados</h1>
                             @foreach ($Pedidos as $pedido)
@@ -23,15 +23,27 @@
                                     <div class="card mb-3" style="max-width: 800px;">
                                         <div class="row g-0">
                                         <div class="col-md-4">
-                                            <img src="{{ $product->image }}" alt="{{ $product->name }}" style="max-width: 18rem;">
+                                            <img src="{{ $product->image }}" alt="{{ $product->name }}" style="max-width: 24rem;">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            <a href="/product/{{ $product->id }}" class="card-title">{{ $product->name }}</a>
                                             <p class="card-text">Precio: ${{ $product->price }}</p>
-                                            <p class="card-text">Frecha de compra: {{ $pedido->fechapedido }}</p>
-                                            <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                            <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas</a>
+                                            <p class="card-text">A nombre: {{ $pedido->name }}</p>
+                                            <p class="card-text">Direccion: {{ $pedido->direccion }}</p>
+                                            @if(($pedido->entregado==false))
+                                            <p class="card-text">Fecha de compra: {{ $pedido->fechapedido }}</p>
+                                            <p class="card-text">Estado: En camino</p>
+                                            @if(Auth::user()->type==='admin')
+                                            <div class="alert alert-success">
+                                                <a href="/entrega/{{ $pedido->id }}" class="card-text">Marcar como entregado</a>&nbsp;
+                                            </div>
+                                            @endif
+                                            @else
+                                            <p class="card-text">Fecha de entrega: {{$pedido->fechaentrega}}</p>
+                                            <p class="card-text">Estado: Entregado</p>
+                                            @endif
+                                            <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a>
                                             </div>
                                         </div>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;

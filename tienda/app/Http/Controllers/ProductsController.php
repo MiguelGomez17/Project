@@ -9,15 +9,7 @@ use App\product;
 
 class ProductsController extends Controller
 {
-    public function viewCategory($category)
-    {
-        $Product = Product::where('category', $category)->paginate(10);
-        if($Product){
-            return view('Category',['products'=>$Product,'categoria'=>$category]);
-        }else{
-            return redirect()->route('home');
-        }
-    }
+    /* Vistas de producto, lista de productos y categorias */
     public function viewProduct($id)
     {
         $Product = Product::find($id);
@@ -36,21 +28,19 @@ class ProductsController extends Controller
             return redirect()->route('home');
         }
     }
-    public function viewDelete($id)
+    public function viewCategory($category)
     {
-        $Product = Product::find($id);
+        $Product = Product::where('category', $category)->paginate(10);
         if($Product){
-            return view('Delete',['Product'=>$Product]);
+            return view('Category',['products'=>$Product,'categoria'=>$category]);
         }else{
             return redirect()->route('home');
         }
     }
-    public function Delete($id)
-    {
-        $Product = Product::find($id);
-        $Product->delete();
-        return redirect('/home');
-    }
+
+
+    
+    /* Vistas de agregar producto */
     public function viewCreate()
     {
         return view('CreateProduct');
@@ -76,5 +66,23 @@ class ProductsController extends Controller
         $product->category = $data['category'];
         $product->save();
         return redirect('/product');
+    }
+
+
+    /* Vistas para eliminar producto */
+    public function viewDelete($id)
+    {
+        $Product = Product::find($id);
+        if($Product){
+            return view('Delete',['Product'=>$Product]);
+        }else{
+            return redirect()->route('home');
+        }
+    }
+    public function Delete($id)
+    {
+        $Product = Product::find($id);
+        $Product->delete();
+        return redirect('/home');
     }
 }

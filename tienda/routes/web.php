@@ -36,4 +36,6 @@ Route::post('/create', 'ProductsController@Create');
 
 Route::get('/Users/{id}', 'UsersController@viewUsers')->middleware('auth');
 
-
+Route::get('/buy/{id}', 'PedidosController@viewComprar')->middleware('auth');
+Route::post('/processbuy/{id}', 'PedidosController@create')->middleware('auth');
+Route::get('/entrega/{id}', 'PedidosController@entrega')->middleware('auth');
