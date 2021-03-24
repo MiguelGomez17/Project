@@ -39,3 +39,6 @@ Route::get('/Users/{id}', 'UsersController@viewUsers')->middleware('auth');
 Route::get('/buy/{id}', 'PedidosController@viewComprar')->middleware('auth');
 Route::post('/processbuy/{id}', 'PedidosController@create')->middleware('auth');
 Route::get('/entrega/{id}', 'PedidosController@entrega')->middleware('auth');
+
+Route::get('/admin', 'AdminController@viewAdmin')->middleware('auth');
+Route::get('/admin/{id}', 'AdminController@upgrade')->middleware('auth');

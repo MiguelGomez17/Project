@@ -42,7 +42,7 @@
                         @if(Auth::user())
                             @if(Auth::user()->type=='admin')
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="/stadistics">Estadisticas</a>
+                                    <a class="nav-link text-light" href="/admin">Administrar</a>
                                 </li>
                             @endif
                         @endif
