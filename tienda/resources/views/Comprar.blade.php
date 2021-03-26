@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @if(Auth::user())
+            @if(Auth::user()&&($Product->inventory>0))
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="container">
@@ -118,7 +118,13 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                     </div>
-                </div>                 
+                </div>   
+            @else
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Producto no disponible</h4>
+                </div>
+            </div>  
             @endif
         </div>
     </div>

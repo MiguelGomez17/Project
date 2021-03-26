@@ -18,6 +18,7 @@
                     @endif
                     <div class="container">
                         @foreach ($products as $product)
+                        @if($product->inventory>0)
                             <div class="card mb-3" style="max-width: 800px;">
                                 <div class="row g-0">
                                 <div class="col-md-4">
@@ -33,6 +34,7 @@
                                     </div>
                                 </div>
                             </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        @endif
                         @endforeach
                     </div>
                     {{ $products->links() }}

@@ -8,6 +8,7 @@
                 <div class="panel-body">
                     <h1><?= e($Product['name']) ?></h1>
                 </div>
+                @if($Product->inventory>0)
                 <div class="container">
                     <div class="card mb-3" style="max-width: 800px;">
                         <div class="row g-0">
@@ -23,7 +24,9 @@
                             <p class="card-text">Existencias: {{ $Product->inventory }}</p>
                             <a href="/product/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
                             @if(Auth::user())
-                                <a href="/buy/{{ $Product->id }}" class="btn btn-primary">Comprar</a>
+                                @if($Product->inventory>0)
+                                    <a href="/buy/{{ $Product->id }}" class="btn btn-primary">Comprar</a>
+                                @endif
                                 @if(Auth::user()->type=='admin')
                                     <a href="/product/delete/{{ $Product->id }}" class="btn btn-danger">Eliminar</a>
                                 @endif
@@ -34,6 +37,11 @@
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
+                @else
+                    <div class="container">
+                        <h4>Producto no disponible</h4>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
