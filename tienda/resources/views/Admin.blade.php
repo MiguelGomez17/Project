@@ -12,6 +12,7 @@
                     <div class="container">
                         <h4>Productos</h4>
                         <a href="/products/create" class="btn btn-success">Agregar producto</a>
+                        <a href="/products/import" class="btn btn-success">Importar productos desde CSV</a>
                         <table class="table" style="width: 80%;">
                             <thead>
                                 <tr>

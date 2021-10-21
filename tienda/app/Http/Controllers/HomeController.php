@@ -25,7 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->paginate(15);
-        return view('home', ['products' => $products]);
+        $productsOferta = DB::table('products')->orderBy('price', 'desc')->paginate(3, ['*'], 'Ofertas');
+        $productsNuevo = DB::table('products')->orderBy('name', 'asc')->paginate(3, ['*'], 'Nuevos');
+        $productsVendidos = DB::table('products')->paginate(3, ['*'], 'Vendidos');
+        return view('home', ['productsOferta' => $productsOferta,
+                                'productsNuevo' => $productsNuevo,
+                                'productsVendidos' => $productsVendidos]);
     }
 }

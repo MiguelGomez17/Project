@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UsersController;
+use App\product;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,10 @@ Route::get('/entrega/{id}', 'PedidosController@entrega')->middleware('auth');
 
 Route::get('/admin', 'AdminController@viewAdmin')->middleware('auth');
 Route::get('/admin/{id}', 'AdminController@upgrade')->middleware('auth');
+Route::get('/admin/{id}', 'AdminController@upgrade')->middleware('auth');
+Route::get('/products/import', 'ImportController@viewImport');
+Route::post('/import', 'ImportController@Import');
+Route::get('/import/done', function(){
+    (new product())->importToDb();
+    return redirect("/admin");
+});
