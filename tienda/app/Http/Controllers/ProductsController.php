@@ -30,7 +30,7 @@ class ProductsController extends Controller
     }
     public function viewCategory($category)
     {
-        $Product = Product::where('category', $category)->paginate(10);
+        $Product = Product::where('category', $category)->paginate(20);
         if($Product){
             return view('Category',['products'=>$Product,'categoria'=>$category]);
         }else{
@@ -38,12 +38,26 @@ class ProductsController extends Controller
         }
     }
 
+    public function Search(Request $request){
+        $texto=trim($request->get('search'));
+        $resultado=DB::table('products')->where('name','LIKE','%'.$texto.'%')->paginate(20);
+        return view('Search',['resultados'=>$resultado]);
+    }
+
 
     
     /* Vistas de agregar producto */
     public function viewCreate()
     {
-        return view('CreateProduct');
+        if(Auth::user()){
+            if(Auth::user()->type==='admin'){
+                return view('CreateProduct');
+            }else{
+                return redirect()->route('home');
+            }
+        }else{
+            return redirect()->route('home');
+        }
     }
     public function create(Request $request){
         $validateData = $request->validate([
@@ -72,9 +86,17 @@ class ProductsController extends Controller
     /* Vistas para eliminar producto */
     public function viewDelete($id)
     {
-        $Product = Product::find($id);
-        if($Product){
-            return view('Delete',['Product'=>$Product]);
+        if(Auth::user()){
+            if(Auth::user()->type==='admin'){
+                $Product = Product::find($id);
+                if($Product){
+                    return view('Delete',['Product'=>$Product]);
+                }else{
+                    return redirect()->route('home');
+                }
+            }else{
+                return redirect()->route('home');
+            }
         }else{
             return redirect()->route('home');
         }

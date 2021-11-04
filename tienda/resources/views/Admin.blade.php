@@ -10,6 +10,8 @@
                 </div>
                 <div class="panel-body">
                     <div class="container">
+                        <h4>Pagina principal</h4>
+                        <a href="/admin/custom" class="btn btn-success">Cambiar pagina principal</a>
                         <h4>Productos</h4>
                         <a href="/products/create" class="btn btn-success">Agregar producto</a>
                         <a href="/products/import" class="btn btn-success">Importar productos desde CSV</a>

@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 
 class ImportController extends Controller
 {
     public function viewImport()
     {
-        return view('Import');
+        if(Auth::user()){
+            if(Auth::user()->type==='admin'){
+                return view('Import');
+            }else{
+                return redirect()->route('home');
+            }
+        }else{
+            return redirect()->route('home');
+        }
     }
     
     public function Import(Request $request)

@@ -16,8 +16,28 @@
 </head>
 <body>
     <div id="app">
+        
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
+                <div class="container">
+                    <form method="get" action="/search">
+                        {{csrf_field()}}
+                        <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
+                            <a href="/home"><img class="col-md-3 control-label" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22180%22%20height%3D%2270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c5ce1ad3f%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A39pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c5ce1ad3f%22%3E%3Crect%20width%3D%221200%22%20height%3D%22500%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22500%22%20y%3D%22142.4%22%3EDICESA%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt=""></a>
+                            
+                            <div class="col-md-6" style="max-width: 95%;">
+                                <input id="search" type="Text" class="form-control" name="search" placeholder="Buscar" autocomplete="off" required>
+
+                                @if ($errors->has('search'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('search') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <p><button type="submit" class="btn btn-success" name="submit"><i class="fas fa-search"></i></button></p>
+                    </form>
+                </div>
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -29,9 +49,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    {{-- <a class="navbar-brand" href="{{ url('/') }}">
                         DICES@
-                    </a>
+                    </a> --}}
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -161,13 +181,7 @@
                     <a href="#!" class="text-reset">Facebook</a>
                     </p>
                     <p>
-                    <a href="#!" class="text-reset">Twitter</a>
-                    </p>
-                    <p>
                     <a href="#!" class="text-reset">WhatsApp</a>
-                    </p>
-                    <p>
-                    <a href="#!" class="text-reset">Instagram</a>
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -183,7 +197,7 @@
                     <i class="fas fa-envelope me-3"></i>
                     dicesa1@hotmail.com
                     </p>
-                    <p><i class="fas fa-phone me-3"></i> 812 07 52</p>
+                    <p><i class="fas fa-phone me-3"></i> 812 07 50</p>
                 </div>
                 <!-- Grid column -->
                 </div>

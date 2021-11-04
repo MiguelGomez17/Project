@@ -11,7 +11,6 @@ use App\User;
 
 class AdminController extends Controller
 {
-    
     public function viewAdmin(){
         $Products = DB::table('products')->paginate(10, ['*'], 'products');
         $Users = DB::table('users')->paginate(10, ['*'], 'users');
@@ -31,14 +30,35 @@ class AdminController extends Controller
         }
     }
 
-    public function upgrade($id){
-        $User = User::find($id);
-        if($User->type=='admin'){
-            $User->type='user';
+    public function viewCustom(){
+        if(Auth::user()){
+            if(Auth::user()->type==='admin'){
+                return view('custom');
+            }else{
+                return redirect()->route('home');
+            }
         }else{
-            $User->type='admin';
+            return redirect()->route('home');
         }
-        $User->save();
-        return redirect('/admin');
     }
+
+    public function upgrade($id){
+        if(Auth::user()){
+            if(Auth::user()->type==='admin'){
+                $User = User::find($id);
+                if($User->type=='admin'){
+                    $User->type='user';
+                }else{
+                    $User->type='admin';
+                }
+                $User->save();
+                return redirect('/admin');
+            }else{
+                return redirect()->route('home');
+            }
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
 }
