@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\product;
+use Auth;
 
 class ProductsController extends Controller
 {
@@ -50,7 +51,7 @@ class ProductsController extends Controller
     public function viewCreate()
     {
         if(Auth::user()){
-            if(Auth::user()->type==='admin'){
+            if(Auth::user()->type=='admin'){
                 return view('CreateProduct');
             }else{
                 return redirect()->route('home');
@@ -65,7 +66,7 @@ class ProductsController extends Controller
             'description' => 'required',
             'price' => 'required|numeric',
             'brand' => 'required',
-            'image' => 'required',
+            'image' => 'nullable|sometimes|max:10000',
             'inventory' => 'required|numeric',
             'category' => 'required'
         ]);
@@ -75,7 +76,18 @@ class ProductsController extends Controller
         $product->description = $data['description'];
         $product->price = $data['price'];
         $product->brand = $data['brand'];
-        $product->image = $data['image'];
+
+        if($data['image'])
+        {
+            $file = $data['image'];
+            $finalPath = 'images/products/';
+            $fileName = time().'-'.$file->getClientOriginalName();
+            $uploadSuccess=$data['image']->move($finalPath,$fileName);
+            $product->image = ($finalPath.$fileName);
+        }else{
+            $product->image = 'images/sample/productSample.png';
+        }
+        
         $product->inventory = $data['inventory'];
         $product->category = $data['category'];
         $product->save();

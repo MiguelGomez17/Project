@@ -27,7 +27,7 @@ class product extends Model
                     'description'=>$row[2],
                     'price'=>$row[3],
                     'brand'=>$row[4],
-                    'image'=>$row[5],
+                    'image'=>'images/sample/productSample.png',
                     'inventory'=>$row[6],
                     'category'=>$row[7]
                 ]);

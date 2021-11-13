@@ -13,7 +13,7 @@
                     <div class="card mb-3" style="max-width: 800px;">
                         <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="{{ $Product->image }}" alt="{{ $Product->name }}" style="max-width: 24rem;">
+                            <img src="{{ asset($Product->image) }}" alt="{{ $Product->name }}" style="max-width: 24rem;">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

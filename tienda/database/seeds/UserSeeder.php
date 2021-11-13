@@ -13,19 +13,21 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = new User();
-        $user->name='Miguel Angel';
+        $user->name='Miguel Gomez';
         $user->email='miguelgomez@gmail.com';
         $user->password='$2y$10$nEuFa.Xf4CpoA.AhdMOCwuhgqrQ8qsnxA3lNWZZjIGwVYdUMxvf66';
         //Contraseña: 101722
         $user->type='admin';
         $user->save();
+
         $user2 = new User();
-        $user2->name='Jose Antonio';
-        $user2->email='josesito@gmail.com';
+        $user2->name='Miguel Angel';
+        $user2->email='miguelangel@gmail.com';
         $user2->password='$2y$10$nEuFa.Xf4CpoA.AhdMOCwuhgqrQ8qsnxA3lNWZZjIGwVYdUMxvf66';
         //Contraseña: 101722
         $user2->type='user';
         $user2->save();
+        
         $user3 = new User();
         $user3->name='Marcos Gonzalez';
         $user3->email='margon@gmail.com';

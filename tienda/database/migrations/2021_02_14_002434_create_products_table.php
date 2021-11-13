@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->char('price');
             $table->string('brand');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->char('inventory');
             $table->string('category');
             $table->timestamps();

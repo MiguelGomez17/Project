@@ -10,7 +10,7 @@
                             <h4>Agregar producto</h4>
                         </div>
                         <div class="container">
-                            <form class="form-horizontal" autocomplete="off" method="POST" action="/create">
+                            <form class="form-horizontal" autocomplete="off" method="POST" action="/create" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-md-2 control-label">Nombre</label>
@@ -57,9 +57,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                                    <label for="image" class="col-md-2 control-label">URL de la imagen</label>
+                                    <label for="image" class="col-md-2 control-label">Imagen</label>
                                     <div class="col-md-8">
-                                        <input id="image" type="text" class="form-control" name="image" value="{{ old('image') }}" placeholder="Ejemplo: www.ejemplo.com/image/phone.jpg"autofocus autocomplete="off">
+                                        <input id="image" type="file" class="form-control" name="image" value="{{ old('image') }}" accept="image">
                                         @if ($errors->has('image'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('image') }}</strong>

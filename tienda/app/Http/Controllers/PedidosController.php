@@ -51,6 +51,7 @@ class PedidosController extends Controller
         $Pedido->entregado = true;
         $Pedido->fechaentrega = now();
         $Pedido->save();
-        return redirect('/home');
+        return redirect('/admin');
+
     }
 }

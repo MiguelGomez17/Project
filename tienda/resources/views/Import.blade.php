@@ -13,7 +13,7 @@
                         El importar un archivo de productos <a href="#" class="alert-link">eliminara todos los productos</a> de la base de datos actual
                     </div>
                     <div class="container">
-                        <form method="POST" action="{{url("import")}}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{url("import")}}" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
                                 <label for="file" class="col-md-2 control-label">Archivo CSV</label>

@@ -157,16 +157,10 @@
                     Sobre nosotros
                     </h6>
                     <p>
-                    <a href="#!" class="text-reset">Quienes somos</a>
+                    <a href="/about" class="text-reset">Quienes somos</a>
                     </p>
                     <p>
-                    <a href="#!" class="text-reset">Ubicacion</a>
-                    </p>
-                    <p>
-                    <a href="#!" class="text-reset">Garantia de compra</a>
-                    </p>
-                    <p>
-                    <a href="#!" class="text-reset">Atencion a cliente</a>
+                    <a href="/ubicacion" class="text-reset">Ubicacion</a>
                     </p>
                 </div>
                 <!-- Grid column -->

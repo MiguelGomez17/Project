@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use App\Pedido;
 use App\product;
 use App\User;
+use App\mainPage;
 
 class AdminController extends Controller
 {
@@ -40,6 +42,27 @@ class AdminController extends Controller
         }else{
             return redirect()->route('home');
         }
+    }
+
+    public function loadImages(Request $request){
+        $validateData = $request->validate([
+            'file' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000',
+            'file1' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000',
+        ]);
+        $file = $request->file('file');
+        $file1 = $request->file('file1');
+        $finalPath = 'images/homepage/';
+        $fileName = time().'-'.$file->getClientOriginalName();
+        $file1Name = time().'-'.$file1->getClientOriginalName();
+        File::deleteDirectory(public_path('images/homepage/'));
+        $uploadSuccess=$request->file('file')->move($finalPath,$fileName);
+        $uploadSuccess=$request->file('file1')->move($finalPath,$file1Name);
+        DB::table('main_pages')->truncate();
+        $mainPage = new mainPage;
+        $mainPage->file=($finalPath.$fileName);
+        $mainPage->file1=($finalPath.$file1Name);
+        $mainPage->save();
+        return redirect('/home');
     }
 
     public function upgrade($id){
