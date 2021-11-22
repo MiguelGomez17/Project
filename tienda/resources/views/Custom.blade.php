@@ -10,7 +10,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="container">
-                        <form class="form-horizontal" method="POST" action="{{url("admin/loadImages")}}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{url("loadImages")}}" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
                                 <label for="file" class="col-md-2 control-label">Archivo de imagen</label>

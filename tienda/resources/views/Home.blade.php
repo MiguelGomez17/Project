@@ -71,7 +71,7 @@
                                                     <img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;">
                                                 </div>
                                                 {{-- <p class="card-text">{{ $product->description }}</p> --}}
-                                                <p class="card-text">${{ $product->price }}</p>
+                                                <p class="card-text">${{ number_format($product->price,2) }}</p>
                                                 <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                                 <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas...</a>
                                             </div>

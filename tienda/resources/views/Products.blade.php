@@ -25,7 +25,7 @@
                                         <div class="card-body">
                                             <p class="card-title">{{ $product->name }}</p>
                                             <p class="card-text">Descripcion: {{ $product->description }}</p>
-                                            <p class="card-text">Precio: ${{ $product->price }}</p>
+                                            <p class="card-text">Precio: ${{ number_format($product->price,2) }}</p>
                                             <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas</a>
                                             @if (Auth::user())

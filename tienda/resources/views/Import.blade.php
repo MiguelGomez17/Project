@@ -12,6 +12,9 @@
                     <div class="alert alert-danger" role="alert">
                         El importar un archivo de productos <a href="#" class="alert-link">eliminara todos los productos</a> de la base de datos actual
                     </div>
+                    <div class="alert alert-info" role="alert">
+                        Este proceso puede tardar unos minutos
+                    </div>
                     <div class="container">
                         <form class="form-horizontal" method="POST" action="{{url("import")}}" enctype="multipart/form-data">
                             {{csrf_field()}}
@@ -28,7 +31,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <p><button type="submit" class="btn btn-success" name="submit"><i class="fa fa-check"></i>Enviar</button></p>
+                            <p><button type="submit" class="btn btn-success" name="submit"><i class="fa fa-check"></i> Subir</button></p>
                         </form>
                         <p>{{session('status')}}</p>
                     </div>

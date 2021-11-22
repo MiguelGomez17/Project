@@ -14,7 +14,7 @@ use App\mainPage;
 class AdminController extends Controller
 {
     public function viewAdmin(){
-        $Products = DB::table('products')->paginate(10, ['*'], 'products');
+        $Products = DB::table('products')->where('inventory','>',0)->paginate(100, ['*'], 'products');
         $Users = DB::table('users')->paginate(10, ['*'], 'users');
         $Pedidos = DB::table('pedidos')->paginate(10, ['*'], 'pedidos');
 

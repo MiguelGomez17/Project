@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ImportController extends Controller
 {
@@ -27,8 +28,7 @@ class ImportController extends Controller
         ]);
         $file = file($request->file->getRealPath());
         $data = array_slice($file,1);
-        $parts = array_chunk($data,1000);
-
+        $parts = array_chunk($data,2000);
         foreach($parts as $index=>$part){
             $fileName=resource_path('pending-files/'.date('y-m-d-H-i-s').$index. '.csv');
             file_put_contents($fileName,$part);

@@ -25,6 +25,8 @@ Route::get('/product', 'ProductsController@viewProducts');
 Route::get('/product/{id}', 'ProductsController@viewProduct');
 
 Route::get('/products/create', 'ProductsController@viewCreate');
+Route::get('/product/edit/{id}', 'ProductsController@viewEdit');
+Route::post('/edit/{id}', 'ProductsController@Edit');
 Route::post('/create', 'ProductsController@Create');
 
 Route::get('/product/delete/{id}', 'ProductsController@viewDelete');
@@ -37,6 +39,7 @@ Route::get('/search', 'ProductsController@Search');
 Route::get('/products/import', 'ImportController@viewImport');
 Route::post('/import', 'ImportController@Import');
 Route::get('/import/done', function(){
+    set_time_limit(7200);
     (new product())->importToDb();
     return redirect("/admin");
 });
@@ -45,16 +48,16 @@ Route::get('/import/done', function(){
 Route::get('/Users/{id}', 'UsersController@viewUsers')->middleware('auth');
 
 /* Pagina de Carrito de compra */
-Route::get('/buy/{id}', 'PedidosController@viewComprar')->middleware('auth');
-Route::post('/processbuy/{id}', 'PedidosController@create')->middleware('auth');
-Route::get('/entrega/{id}', 'PedidosController@entrega')->middleware('auth');
+//Route::get('/buy/{id}', 'PedidosController@viewComprar')->middleware('auth');
+Route::post('/processAdd/{id}', 'PedidosController@agregar')->middleware('auth');
+//Route::get('/entrega/{id}', 'PedidosController@entrega')->middleware('auth');
 
 /* Paginas de administrador */
 Route::get('/admin', 'AdminController@viewAdmin')->middleware('auth');
 Route::get('/admin/{id}', 'AdminController@upgrade')->middleware('auth');
 
-Route::get('/admin/custom', 'AdminController@viewCustom')->middleware('auth');
-Route::post('/admin/loadImages', 'AdminController@loadImages')->middleware('auth');
+Route::get('/custom', 'AdminController@viewCustom')->middleware('auth');
+Route::post('/loadImages', 'AdminController@loadImages')->middleware('auth');
 
 /* Paginas del footer */
 Route::get('/ubicacion', 'HomeController@viewUbicacion');

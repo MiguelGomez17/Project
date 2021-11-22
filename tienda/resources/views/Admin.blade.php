@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <div class="container">
                         <h4>Pagina principal</h4>
-                        <a href="/admin/custom" class="btn btn-success">Cambiar pagina principal</a>
+                        <a href="/custom" class="btn btn-success">Cambiar pagina principal</a>
                         <h4>Productos</h4>
                         <a href="/products/create" class="btn btn-success">Agregar producto</a>
                         <a href="/products/import" class="btn btn-success">Importar productos desde CSV</a>
@@ -31,10 +31,10 @@
                                     <tr>
                                         <th scope="row">{{$Product->id}}</th>
                                         <td><a href="/product/{{ $Product->id }}">{{$Product->name}}</a> </td>
-                                        <td>{{$Product->price}}</td>
+                                        <td>${{number_format($Product->price,2)}}</td>
                                         <td>{{$Product->brand}}</td>
                                         <td>{{$Product->inventory}}</td>
-                                        <td>{{$Product->category}}</td>
+                                        <td><a href="/product/category/{{$Product->category}}">{{$Product->category}}</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -75,10 +75,10 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Producto</th>
                                     <th scope="col">Usuario</th>
-                                    <th scope="col">Direccion</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Fecha pedido</th>
-                                    <th scope="col">Fecha entrega</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Compra</th>
+                                    <th scope="col">Fecha compra</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,14 +95,14 @@
                                             <td><a href="/Users/{{ $Usuario->id }}">{{$Usuario->name}}</a> </td>
                                         @endif
                                     @endforeach
-                                    <td>{{$Pedido->direccion}}</td>
-                                    @if(($Pedido->entregado))
-                                        <td>Entregado</td>
+                                    <td>{{$Pedido->cantidad}}</td>
+                                    <td>${{number_format(($Producto->price)*($Pedido->cantidad),2)}}</td>
+                                    @if(($Pedido->comprado))
+                                        <td>Realizada</td>
                                     @else
-                                        <td>En camino</td>
+                                        <td>No realizada</td>
                                     @endif
-                                    <td>{{$Pedido->fechapedido}}</td>
-                                    <td>{{$Pedido->fechaentrega}}</td>
+                                    <td>{{$Pedido->fechaCompra}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

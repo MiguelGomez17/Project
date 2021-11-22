@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Helper;
 
 class product extends Model
 {
@@ -19,18 +20,21 @@ class product extends Model
         foreach(array_slice($g, 0, 2) as $file){
             $data = array_map('str_getcsv', file($file));
             DB::table('products')->truncate();
-            foreach($data as $row){
-                self::updateorCreate([
-                    'id'=>$row[0]
-                ],[
-                    'name'=>$row[1],
-                    'description'=>$row[2],
-                    'price'=>$row[3],
-                    'brand'=>$row[4],
-                    'image'=>'images/sample/productSample.png',
-                    'inventory'=>$row[6],
-                    'category'=>$row[7]
-                ]);
+            set_time_limit(7200);
+            foreach($data as $index => $row){
+                if($row[0]){
+                    self::updateorCreate([
+                        'id'=>$index
+                    ],[
+                        'name'=>$row[1],
+                        'description'=>$row[1],
+                        'price'=>$row[4],
+                        'brand'=>$row[3],
+                        'image'=>'images/sample/productSample.png',
+                        'inventory'=>$row[2],
+                        'category'=>Helper::buscar($row[1])
+                    ]);
+                }
             }
             unlink($file);
         }

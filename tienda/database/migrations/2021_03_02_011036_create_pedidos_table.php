@@ -17,11 +17,10 @@ class CreatePedidosTable extends Migration
             $table->increments('id');
             $table->string('userid');
             $table->string('productid');
-            $table->string('name');
-            $table->string('direccion');
-            $table->boolean('entregado')->default(false);
-            $table->timestamp('fechapedido');
-            $table->timestamp('fechaentrega')->nullable();
+            $table->string('cantidad');
+            $table->string('total');
+            $table->boolean('comprado')->default(false);
+            $table->timestamp('fechaCompra')->nullable();
             $table->timestamps();
         });
     }

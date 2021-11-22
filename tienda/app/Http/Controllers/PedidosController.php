@@ -9,6 +9,7 @@ use App\product;
 
 class PedidosController extends Controller
 {
+    /*
     public static $saveid;
     public function viewComprar($id)
     {
@@ -39,7 +40,7 @@ class PedidosController extends Controller
         $pedido->productid = $id;
         $pedido->entregado = false;
         $pedido->fechapedido = now();
-        $pedido->fechapedido = null;
+        $pedido->fechaentrega = null;
         $pedido->save();
         $Product = product::find($id);
         $Product->inventory = ($Product->inventory)-1;
@@ -52,6 +53,22 @@ class PedidosController extends Controller
         $Pedido->fechaentrega = now();
         $Pedido->save();
         return redirect('/admin');
+    }*/
 
+    public function agregar(Request $request, $id){
+        $validateData = $request->validate([
+            'cantidad' => 'required|numeric|min:1|max:100'
+        ]);
+        $Product = product::find($id);
+        $data = request()->all();
+        $pedido = new Pedido;
+        $pedido->productid = $id;
+        $pedido->userid = Auth::user()->id;
+        $pedido->cantidad = $data['cantidad'];
+        $pedido->total = $data['cantidad'] * ($Product->price);
+        $pedido->comprado = false;
+        $pedido->fechaCompra = null;
+        $pedido->save();
+        return redirect('/Users/'.Auth::user()->id);
     }
 }

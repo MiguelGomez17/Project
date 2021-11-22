@@ -16,7 +16,7 @@
                     @endif
                     @if (Auth::user()->id===$Usuario['id']||Auth::user()->type==='admin')
                         <div class="panel-body">
-                            <h1>Pedidos realizados</h1>
+                            <h1>Carrito de compra</h1>
                             @foreach ($Pedidos as $pedido)
                                 @foreach ($Products as $product)
                                 @if(($pedido->productid)==($product->id))
@@ -28,20 +28,13 @@
                                         <div class="col-md-8">
                                             <div class="card-body">
                                             <a href="/product/{{ $product->id }}" class="card-title">{{ $product->name }}</a>
-                                            <p class="card-text">Precio: ${{ $product->price }}</p>
-                                            <p class="card-text">A nombre: {{ $pedido->name }}</p>
-                                            <p class="card-text">Direccion: {{ $pedido->direccion }}</p>
-                                            @if(($pedido->entregado==false))
-                                            <p class="card-text">Fecha de compra: {{ $pedido->fechapedido }}</p>
-                                            <p class="card-text">Estado: En camino</p>
-                                            @if(Auth::user()->type==='admin')
-                                            <div class="alert alert-success">
-                                                <a href="/entrega/{{ $pedido->id }}" class="card-text">Marcar como entregado</a>&nbsp;
-                                            </div>
-                                            @endif
+                                            <p class="card-text">Precio: ${{number_format($product->price,2) }}</p>
+                                            <p class="card-text">Cantidad: {{ $pedido->cantidad }}</p>
+                                            <p class="card-text">Total: ${{ number_format(($product->price)*($pedido->cantidad),2) }}</p>
+                                            @if(($pedido->comprado))
+                                            <p class="card-text">Fecha de compra: {{ $pedido->fechaCompra }}</p>
                                             @else
-                                            <p class="card-text">Fecha de entrega: {{$pedido->fechaentrega}}</p>
-                                            <p class="card-text">Estado: Entregado</p>
+                                            <p class="card-text">Fecha de compra: <i>N/A</i></p>
                                             @endif
                                             <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a>
                                             </div>

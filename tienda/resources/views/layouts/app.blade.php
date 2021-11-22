@@ -23,9 +23,11 @@
                     <form method="get" action="/search">
                         {{csrf_field()}}
                         <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
-                            <a href="/home"><img class="col-md-3 control-label" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22180%22%20height%3D%2270%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17c5ce1ad3f%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A39pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17c5ce1ad3f%22%3E%3Crect%20width%3D%221200%22%20height%3D%22500%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22500%22%20y%3D%22142.4%22%3EDICESA%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt=""></a>
+                            <a href="/home">
+                                <img class="col-md-3 control-label" src="{{asset('images/Logo.jpg')}}" style="width: 20%; max-height: auto;">
+                            </a>
                             
-                            <div class="col-md-6" style="max-width: 95%;">
+                            <div class="col-md-6" style="max-width: 50%;">
                                 <input id="search" type="Text" class="form-control" name="search" placeholder="Buscar" autocomplete="off" required>
 
                                 @if ($errors->has('search'))
@@ -35,70 +37,17 @@
                                 @endif
                             </div>
                         </div>
-                        <p><button type="submit" class="btn btn-success" name="submit"><i class="fas fa-search"></i></button></p>
+                        <p><button type="submit" class="btn btn-success" name="submit">Buscar <i class="fas fa-search"></i></button></p>
                     </form>
-                </div>
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                        DICES@
-                    </a> --}}
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Computadoras<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Escritorio</a></li>
-                                <li><a href="#">Laptop</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Hardware<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Discos duros</a></li>
-                                <li><a href="#">Memorias</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Accesorios<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
-                            </ul>
-                        </li>
-                        <!--<li class="nav-item active">
-                            <a class="nav-link text-light" href="/product">Productos
-                            </a>
-                        </li>-->
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-left">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Inicia sesion</a></li>
+                            <li><a href="{{ route('register') }}">Registrate</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    Bienvenido {{ Auth::user()->name }}! <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
@@ -114,7 +63,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Cerrar sesion
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -124,6 +73,138 @@
                                 </ul>
                             </li>
                         @endguest
+                    </ul>
+                </div>
+                <div class="navbar-header">
+
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Computación<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/product/category/Computadoras">Computadoras</a></li>
+                                <li><a href="/product/category/Laptop">Laptops</a></li>
+                                <li><a href="/product/category/Celular">Celulares</a></li>
+                                <li><a href="/product/category/Tablet">Tablets</a></li>
+                                <li><a href="/product/category/Sistema">Sistemas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Hardware<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/product/category/Disco">Discos duros</a></li>
+                                <li><a href="/product/category/Ventilador">Ventilador</a></li>
+                                <li><a href="/product/category/Disco">Discos duros</a></li>
+                                <li><a href="/product/category/Disco">Discos duros</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Computo<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Accesorios<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Electronica<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Limpieza<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Refacciones<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Cables<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Consumibles<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Software<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Servicio<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Iluminacion Led<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Audifonos</a></li>
+                                <li><a href="#">Bocinas</a></li>
+                            </ul>
+                        </li>
+                        <!--<li class="nav-item active">
+                            <a class="nav-link text-light" href="/product">Productos
+                            </a>
+                        </li>-->
                     </ul>
                 </div>
             </div>
