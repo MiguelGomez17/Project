@@ -22,7 +22,6 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                     <h5 class="card-title">{{ $product->name }}</h5>
-                                    <p class="card-text">Descripcion:{{ $product->description }}</p>
                                     <p class="card-text">Precio: ${{ number_format($product->price,2) }}</p>
                                     <p class="card-text">Existencias: {{ $product->inventory }}</p>
                                     <a href="/product/category/{{ $product->Category }}" class="card-text">{{ $product->Category }}</a><br>

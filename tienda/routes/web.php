@@ -48,9 +48,7 @@ Route::get('/import/done', function(){
 Route::get('/Users/{id}', 'UsersController@viewUsers')->middleware('auth');
 
 /* Pagina de Carrito de compra */
-//Route::get('/buy/{id}', 'PedidosController@viewComprar')->middleware('auth');
 Route::post('/processAdd/{id}', 'PedidosController@agregar')->middleware('auth');
-//Route::get('/entrega/{id}', 'PedidosController@entrega')->middleware('auth');
 
 /* Paginas de administrador */
 Route::get('/admin', 'AdminController@viewAdmin')->middleware('auth');

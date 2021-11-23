@@ -6,20 +6,19 @@ class Helper
 {
     public static function buscar($valor){
         $categorias = array("AUDIFONOS", "ADAPTADOR", "ANTENA", "BATERIA",
-        "BASCULA", "BOCINA", "BAFLE", "BINOCULARES", "BOLIGRAFO", "BOCINAS", "HOME",
-        "CALCULADORA", "CARETA", "CAUTIN", "CABLE", "CAMARA", "CAJON", "CD", "CELULAR", "CAJA",
-        "CHIP", "CHROMECAST", "CINTA", "CONTROL", "CONECTOR", "CONTACTO", "CORREA", "CORTADOR",
-        "CPU", "CARGADOR", "CRISTAL", "CUTER", "CUBO", "CUBREBOCAS", "DISPENSADOR", "DESINFECTANTE",
-        "DETECTOR", "DECODIFICADOR", "MINI", "DVD-R", "ENCENDEDOR", "EXTENSOR",
-        "ELIMINADOR", "EXTENSION", "FOCO", "FOLDERS", "FUENTE", "FUNDA", "GABINETE", "GEL", "ARTICULOS",
-        "HUMIDIFICADOR", "MULTIFUNCIONAL", "INVERSOR", "LAMPARA", "LECTOR", "LENTE", "LENTES", "MALETIN",
-        "MOTHER BOARD", "MINICONCENTRADOR", "MEMORIA", "MICROFONO", "MOUSE", "MONITOR", "MOCHILA",
-        "REPRODUCTOR", "LAPTOP", "PULSO", "PANTALLA", "PAPEL", "PILA", "PIZARRON", "PLUG", "PLUMA",
-        "PRESENTADOR", "PROCESADOR", "PANEL", "PASTA", "PULSERA", "QUEMADOR", "RAQUETA", "RECEPTOR",
-        "REGISTRADOR", "RACK", "ROKU", "ROLLO", "REGULADOR", "SOPORTE", "SILLA", "SOBRES",
-        "SPRAY", "SMART", "SINTONIZADOR", "SWITCH", "TABLET", "TAPETE", "TONER", "TELESCOPIO", "TECLADO",
-        "TERMOMETRO", "TELEFONO", "TRANSMISOR", "TIMBRE", "TOALLAS", "TRIPIE", "TARJETA", "VIDEO",
-        "VENTILADOR", "WALKIE");
+        "BASCULA", "BAFLE", "BOCINAS", "CALCULADORA", "CARETA", "CABLE", "CAMARA", "CELULAR",
+        "CHIP", "CHROMECAST", "CONTROL", "CPU", "CARGADOR",
+        "CUBREBOCAS", "DISPENSADOR", "DESINFECTANTE",
+        "DETECTOR", "DECODIFICADOR", "MINI", "ENCENDEDOR", "EXTENSOR",
+        "ELIMINADOR", "EXTENSION", "FOCO", "FOLDERS", "FUENTE", "FUNDA", "GABINETE", "GEL",
+        "HUMIDIFICADOR", "MULTIFUNCIONAL", "LAMPARA", "LECTOR", "LENTES", "MALETIN",
+        "MINICONCENTRADOR", "MEMORIA", "MICROFONO", "MOUSE", "MONITOR", "MOCHILA",
+        "REPRODUCTOR", "LAPTOP", "PULSO", "PANTALLA", "PILA", 
+        "PRESENTADOR", "PROCESADOR", "PASTA", "QUEMADOR", "RECEPTOR",
+        "RACK", "ROLLO", "REGULADOR", "SOPORTE", "SILLA",
+        "SPRAY", "SMART", "SINTONIZADOR", "SWITCH", "TABLET", "TAPETE", "TONER", "TECLADO",
+        "TERMOMETRO", "TELEFONO", "TRANSMISOR", "TOALLAS", "TRIPIE", "TARJETA",
+        "VENTILADOR");
 
         if(in_array( (strtok($valor,' ')), $categorias)){
             return ucfirst(strtolower(strtok($valor,' ')));
@@ -48,8 +47,8 @@ class Helper
             else if((strtok($valor,' '))=='MULTIFUNC'){
                 return ucfirst(strtolower('MULTIFUNCIONAL'));
             }
-            else if((strtok($valor,' '))=='MINICONCENTR'){
-                return ucfirst(strtolower('MINICONCENTRADOR'));
+            else if((strtok($valor,' '))=='MINICONCENTR'||(strtok($valor,' '))=='MINICONCENTRADOR'){
+                return ucfirst(strtolower('MINI'));
             }
             else if((strtok($valor,' '))=='MICROF'){
                 return ucfirst(strtolower('MICROFONO'));
@@ -71,6 +70,30 @@ class Helper
             }
             else if((strtok($valor,' '))=='CONTR'){
                 return ucfirst(strtolower('CONTROL'));
+            }
+            else if((strtok($valor,' '))=='BOCINA'){
+                return ucfirst(strtolower('BOCINAS'));
+            }
+            else if((strtok($valor,' '))=='CRISTAL'){
+                return ucfirst(strtolower('CRISTAL TEMPLADO'));
+            }
+            else if((strtok($valor,' '))=='PAQ.'){
+                return ucfirst(strtolower('CUBREBOCAS'));
+            }
+            else if((strtok($valor,' '))=='LENTE'){
+                return ucfirst(strtolower('LENTES'));
+            }
+            else if((strtok($valor,' '))=='MOTHER'){
+                return ucfirst(strtolower('MOTHER BOARDS'));
+            }
+            else if((strtok($valor,' '))=='PANEL'){
+                return ucfirst(strtolower('PANEL SOLAR'));
+            }
+            else if((strtok($valor,' '))=='PASTA'){
+                return ucfirst(strtolower('PASTA TERMICA'));
+            }
+            else if((strtok($valor,' '))=='VIDEO'){
+                return ucfirst(strtolower('VIDEOCONSOLA'));
             }
             else{
                 return 'undefined';

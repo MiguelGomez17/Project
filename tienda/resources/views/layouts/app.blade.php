@@ -97,6 +97,7 @@
                                 <li><a href="/product/category/Laptop">Laptops</a></li>
                                 <li><a href="/product/category/Celular">Celulares</a></li>
                                 <li><a href="/product/category/Tablet">Tablets</a></li>
+                                <li><a href="/product/category/Telefono">Telefonos</a></li>
                                 <li><a href="/product/category/Sistema">Sistemas</a></li>
                             </ul>
                         </li>
@@ -105,19 +106,17 @@
                                 Hardware<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a href="/product/category/Cable">Cables</a></li>
+                                <li><a href="/product/category/Cpu">CPUs</a></li>
                                 <li><a href="/product/category/Disco">Discos duros</a></li>
+                                <li><a href="/product/category/Disipador">Disipador</a></li>
+                                <li><a href="/product/category/Fuente">Fuentes</a></li>
+                                <li><a href="/product/category/Gabinete">Gabinetes</a></li>
+                                <li><a href="/product/category/Memoria">Memorias</a></li>
+                                <li><a href="/product/category/Mother boards">Mother Boards</a></li>
+                                <li><a href="/product/category/Procesador">Procesadores</a></li>
+                                <li><a href="/product/category/Tarjeta">Tarjetas de video</a></li>
                                 <li><a href="/product/category/Ventilador">Ventilador</a></li>
-                                <li><a href="/product/category/Disco">Discos duros</a></li>
-                                <li><a href="/product/category/Disco">Discos duros</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Computo<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -125,86 +124,105 @@
                                 Accesorios<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
+                                <li><a href="/product/category/Audifonos">Audifonos</a></li>
+                                <li><a href="/product/category/Antena">Antenas</a></li>
+                                <li><a href="/product/category/Adaptador">Adaptadores</a></li>
+                                <li><a href="/product/category/Bocinas">Bocinas</a></li>
+                                <li><a href="/product/category/Bafle">Bafle</a></li>
+                                <li><a href="/product/category/Barra Multicontactos">Barra Multicontactos</a></li>
+                                <li><a href="/product/category/Cargador">Cargadores</a></li>
+                                <li><a href="/product/category/Chip">Chips</a></li>
+                                <li><a href="/product/category/Control">Controles</a></li>
+                                <li><a href="/product/category/Cristal templado">Cristal templado</a></li>
+                                <li><a href="/product/category/Eliminador">Eliminador</a></li>
+                                <li><a href="/product/category/Extension">Extension</a></li>
+                                <li><a href="/product/category/Extensor">Extensor</a></li>
+                                <li><a href="/product/category/Funda">Fundas</a></li>
+                                <li><a href="/product/category/Maletin">Maletines</a></li>
+                                <li><a href="/product/category/Microfono">Microfonos</a></li>
+                                <li><a href="/product/category/Mochila">Mochilas</a></li>
+                                <li><a href="/product/category/Monitor">Monitor</a></li>
+                                <li><a href="/product/category/Mouse">Mouse</a></li>
+                                <li><a href="/product/category/Multifuncional">Multifuncional</a></li>
+                                <li><a href="/product/category/Panel solar">Paneles solares</a></li>
+                                <li><a href="/product/category/Pantalla">Pantallas</a></li>
+                                <li><a href="/product/category/Soporte">Soportes</a></li>
+                                <li><a href="/product/category/Switch">Switch</a></li>
+                                <li><a href="/product/category/Tapete">Tapetes p/ mouse</a></li>
+                                <li><a href="/product/category/Teclado">Teclados</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Electronica<span class="caret"></span>
+                                Electronica y Gadgets<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
+                                <li><a href="/product/category/Bascula">Bascula</a></li>
+                                <li><a href="/product/category/Calculadora">Calculadora</a></li>
+                                <li><a href="/product/category/Camara">Camara</a></li>
+                                <li><a href="/product/category/Chromecast">Chromecast</a></li>
+                                <li><a href="/product/category/Detector">Detector</a></li>
+                                <li><a href="/product/category/Encendedor">Encendedor</a></li>
+                                <li><a href="/product/category/Humidificador">Humidificador</a></li>
+                                <li><a href="/product/category/Lector">Lectores</a></li>
+                                <li><a href="/product/category/Presentador">Presentadores</a></li>
+                                <li><a href="/product/category/Quemador">Quemadores</a></li>
+                                <li><a href="/product/category/Receptor">Receptores</a></li>
+                                <li><a href="/product/category/Regulador">Reguladores</a></li>
+                                <li><a href="/product/category/Reproductor">Reproductores</a></li>
+                                <li><a href="/product/category/Sintonizador">Sintonizadores</a></li>
+                                <li><a href="/product/category/Smart">Smart</a></li>
+                                <li><a href="/product/category/Transmisor">Transmisores</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Limpieza<span class="caret"></span>
+                                Mantenimiento<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
+                                <li><a href="/product/category/Aire Comprimido">Aire Comprimido</a></li>
+                                <li><a href="/product/category/Pasta termica">Pasta termica</a></li>
+                                <li><a href="/product/category/Bateria">Baterias</a></li>
+                                <li><a href="/product/category/Spray">Spray limpiador</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Refacciones<span class="caret"></span>
+                                Contra el COVID<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
+                                <li><a href="/product/category/Careta">Careta</a></li>
+                                <li><a href="/product/category/Cubrebocas">Cubrebocas</a></li>
+                                <li><a href="/product/category/Gel">Gel Antibacterial</a></li>
+                                <li><a href="/product/category/Desinfectante">Desinfectante</a></li>
+                                <li><a href="/product/category/Pulso">Pulso-oximetro</a></li>
+                                <li><a href="/product/category/Termometro">Termometros</a></li>
+                                <li><a href="/product/category/Toallas">Toallas limpiadoras</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Cables<span class="caret"></span>
+                                Otros<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
+                                <li><a href="/product/category/Botella De Tinta">Botella De Tinta</a></li>
+                                <li><a href="/product/category/Foco">Focos Leds</a></li>
+                                <li><a href="/product/category/Folders">Folders</a></li>
+                                <li><a href="/product/category/Lampara">Lamparas Led</a></li>
+                                <li><a href="/product/category/Lentes">Lentes</a></li>
+                                <li><a href="/product/category/Mini">Mini</a></li>
+                                <li><a href="/product/category/Pila">Pilas</a></li>
+                                <li><a href="/product/category/Rack">Racks</a></li>
+                                <li><a href="/product/category/Rollo">Rollos de papel normal y termico</a></li>
+                                <li><a href="/product/category/Silla">Sillas</a></li>
+                                <li><a href="/product/category/Tira Led">Tiras Leds</a></li>
+                                <li><a href="/product/category/Toner">Toners</a></li>
+                                <li><a href="/product/category/Tripie">Tripies</a></li>
+                                <li><a href="/product/category/Videoconsola">Videoconsolas</a></li>
+                                <li><a href="/product/category/Tripie">Tripies</a></li>
+                                <li><a href="/product/category/Undefined">Otros</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Consumibles<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Software<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Servicio<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Iluminacion Led<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Audifonos</a></li>
-                                <li><a href="#">Bocinas</a></li>
-                            </ul>
-                        </li>
-                        <!--<li class="nav-item active">
-                            <a class="nav-link text-light" href="/product">Productos
-                            </a>
-                        </li>-->
                     </ul>
                 </div>
             </div>
@@ -222,11 +240,10 @@
                 <!-- Grid column -->
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                    <i class="fas fa-gem me-3"></i>DICESA
-                    </h6>
-                    <p>
-                    Computacion para todos
+                    <p class="text-center">
+                        <a href="/home">
+                            <img class="col-md-3 control-label" src="{{asset('images/Logo.jpg')}}" style="width: 95%; max-height: auto;">
+                        </a>
                     </p>
                 </div>
                 <!-- Grid column -->
