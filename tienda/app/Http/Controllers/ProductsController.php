@@ -15,7 +15,7 @@ class ProductsController extends Controller
     {
         $Product = Product::find($id);
         if($Product){
-            if(Auth::user()&&Auth::user()->type=='admin'){
+            if(($Product->inventory>0)||(Auth::user()&&Auth::user()->type=='admin')){
                 return view('Product',['Product'=>$Product]);
             }else{
                 return redirect()->route('home');

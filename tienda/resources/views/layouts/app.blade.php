@@ -194,10 +194,10 @@
                                 <li><a href="/product/category/Careta">Careta</a></li>
                                 <li><a href="/product/category/Cubrebocas">Cubrebocas</a></li>
                                 <li><a href="/product/category/Gel">Gel Antibacterial</a></li>
-                                <li><a href="/product/category/Desinfectante">Desinfectante</a></li>
+                                <li><a href="/product/category/Desinfectante">Desinfectantes</a></li>
                                 <li><a href="/product/category/Pulso">Pulso-oximetro</a></li>
                                 <li><a href="/product/category/Termometro">Termometros</a></li>
-                                <li><a href="/product/category/Toallas">Toallas limpiadoras</a></li>
+                                <li><a href="/product/category/Toallas">Toallas Desinfectantes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -219,7 +219,6 @@
                                 <li><a href="/product/category/Toner">Toners</a></li>
                                 <li><a href="/product/category/Tripie">Tripies</a></li>
                                 <li><a href="/product/category/Videoconsola">Videoconsolas</a></li>
-                                <li><a href="/product/category/Tripie">Tripies</a></li>
                                 <li><a href="/product/category/Undefined">Otros</a></li>
                             </ul>
                         </li>

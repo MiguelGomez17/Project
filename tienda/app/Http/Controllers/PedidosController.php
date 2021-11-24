@@ -57,7 +57,7 @@ class PedidosController extends Controller
 
     public function agregar(Request $request, $id){
         $validateData = $request->validate([
-            'cantidad' => 'required|numeric|min:1|max:100'
+            'cantidad' => 'required|numeric|min:1|max:100|integer'
         ]);
         $Product = product::find($id);
         $data = request()->all();
