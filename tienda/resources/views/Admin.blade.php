@@ -96,11 +96,7 @@
                                         @endif
                                     @endforeach
                                     <td>{{$Pedido->cantidad}}</td>
-                                    @foreach ($Productos as $Producto)
-                                        @if($Producto->id==$Pedido->productid)
-                                            <td>${{number_format(($Producto->price)*($Pedido->cantidad),2)}}</td>
-                                        @endif
-                                    @endforeach
+                                    <td>${{$Pedido->total}}</td>
                                     @if(($Pedido->comprado))
                                         <td>Realizada</td>
                                     @else
