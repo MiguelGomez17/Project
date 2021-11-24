@@ -25,22 +25,22 @@ class AdminController extends Controller
             if(Auth::user()->type==='admin'){
                 return view('Admin',['Products'=>$Products,'Pedidos'=>$Pedidos,'Users'=>$Users,'Productos'=>$Productos,'Usuarios'=>$Usuarios]);
             }else{
-                return redirect()->route('home');
+                return redirect()->route('Home');
             }
         }else{
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
     }
 
     public function viewCustom(){
         if(Auth::user()){
             if(Auth::user()->type==='admin'){
-                return view('custom');
+                return view('Custom');
             }else{
-                return redirect()->route('home');
+                return redirect()->route('Home');
             }
         }else{
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
     }
 
@@ -64,13 +64,13 @@ class AdminController extends Controller
                 $mainPage->file=($finalPath.$fileName);
                 $mainPage->file1=($finalPath.$file1Name);
                 $mainPage->save();
-                return redirect('/home');
+                return redirect('/Home');
             }
             else{
-                return redirect('/home');
+                return redirect('/Home');
             }
         }else{
-            return redirect('/home');
+            return redirect('/Home');
         }
     }
 
@@ -84,12 +84,12 @@ class AdminController extends Controller
                     $User->type='admin';
                 }
                 $User->save();
-                return redirect('/admin');
+                return redirect('admin');
             }else{
-                return redirect()->route('home');
+                return redirect()->route('Home');
             }
         }else{
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
     }
 

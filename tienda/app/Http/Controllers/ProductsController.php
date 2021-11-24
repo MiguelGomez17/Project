@@ -18,10 +18,10 @@ class ProductsController extends Controller
             if(($Product->inventory>0)||(Auth::user()&&Auth::user()->type=='admin')){
                 return view('Product',['Product'=>$Product]);
             }else{
-                return redirect()->route('home');
+                return redirect()->route('Home');
             }
         }else{
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
     }
     public function viewProducts()
@@ -30,7 +30,7 @@ class ProductsController extends Controller
         if($Products){
             return view('Products',['products'=>$Products]);
         }else{
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
     }
     public function viewCategory($category)
@@ -47,7 +47,7 @@ class ProductsController extends Controller
         if($Products){
             return view('Category',['products'=>$Products,'categoria'=>$category]);
         }else{
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
     }
 

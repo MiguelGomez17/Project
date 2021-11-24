@@ -14,10 +14,10 @@ class ImportController extends Controller
             if(Auth::user()->type==='admin'){
                 return view('Import');
             }else{
-                return redirect()->route('home');
+                return redirect()->route('Home');
             }
         }else{
-            return redirect()->route('home');
+            return redirect()->route('Home');
         }
     }
     

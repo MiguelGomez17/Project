@@ -33,7 +33,7 @@ class HomeController extends Controller
         $productsOferta = DB::table('products')->where('inventory','>',0)->orderBy('price', 'asc')->paginate(3, ['*'], 'Ofertas');
         $productsVendidos = DB::table('products')->where('inventory','>',0)->orderBy('inventory','desc')->paginate(3, ['*'], 'Vendidos');
         $productsNuevo = DB::table('products')->where('inventory','>',0)->orderBy('name', 'asc')->paginate(3, ['*'], 'Nuevos');
-        return view('home', ['productsOferta' => $productsOferta,
+        return view('Home', ['productsOferta' => $productsOferta,
                                 'productsNuevo' => $productsNuevo,
                                 'productsVendidos' => $productsVendidos,
                                 'bannerImages' => $bannerImages,
@@ -42,7 +42,7 @@ class HomeController extends Controller
 
     public function viewUbicacion()
     {
-        return view('ubicacion');
+        return view('Ubicacion');
     }
     public function viewAbout()
     {
