@@ -8,33 +8,24 @@
                 <div class="panel-heading">Productos</div>
                 <div class="panel-body">
                     <div class="container">
-                        @if (Auth::user())
-                        @if (Auth::user()->type=='admin')
-                        <a href="/products/create" class="btn btn-success">Agregar producto</a>
-                        @endif
-                        @endif
                         @foreach ($products as $product)
                         @if($product->inventory>0)
                         <div class="containe">
                             <div class="card mb-3" style="max-width: 800px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ $product->image }}" alt="{{ $product->name }}" style="max-width: 18rem;">
+                                    <a href="/product/{{ $product->id }}"><img src="{{ $product->image }}" alt="{{ $product->brand }}" style="max-width: 18rem;"></a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <p class="card-title">{{ $product->name }}</p>
-                                            <p class="card-text">Descripcion: {{ $product->description }}</p>
-                                            <p class="card-text">Precio: ${{ number_format($product->price,2) }}</p>
-                                            <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                            <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas</a>
+                                            <a href="/product/{{ $product->id }}"><h2 class="card-title">{{ $product->description }}</h2></a>
+                                            <h4 class="card-text">{{ $product->brand }}</h4>
+                                            <h3 class="card-text">${{ number_format($product->price,2) }}</h3>
+                                            <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             @if (Auth::user())
-                                            <a href="/buy/{{ $product->id }}" class="btn btn-primary">Comprar</a>
                                             @if (Auth::user()->type=='admin')
                                             <a href="/product/delete/{{ $product->id }}" class="btn btn-danger">Eliminar</a>
                                             @endif
-                                            @else
-                                            <a href="{{ route('login') }}" class="btn btn-info">Inicia sesion para comprar</a>
                                             @endif
                                         </div>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;

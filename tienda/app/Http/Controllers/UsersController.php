@@ -20,13 +20,13 @@ class UsersController extends Controller
                 if($User){
                     return view('Users',['Usuario'=>$User,'Pedidos'=>$Pedidos,'Products'=>$Productos]);
                 }else{
-                    return redirect()->route('Home');
+                    return redirect()->route('home');
                 }
             }else{
-                return redirect()->route('Home');
+                return redirect()->route('home');
             }
         }else{
-            return redirect()->route('Home');
+            return redirect()->route('home');
         }
         
     }

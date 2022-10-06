@@ -21,8 +21,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Precio</th>
-                                    <th scope="col">Marca</th>
-                                    <th scope="col">Existencias</th>
+                                    <th scope="col">Clave</th>
                                     <th scope="col">Categoria</th>
                                 </tr>
                             </thead>
@@ -30,11 +29,10 @@
                                 @foreach ($Products as $Product)
                                     <tr>
                                         <th scope="row">{{$Product->id}}</th>
-                                        <td><a href="/product/{{ $Product->id }}">{{$Product->name}}</a> </td>
+                                        <td><a href="/product/{{ $Product->id }}">{{$Product->description}}</a> </td>
                                         <td>${{number_format($Product->price,2)}}</td>
                                         <td>{{$Product->brand}}</td>
-                                        <td>{{$Product->inventory}}</td>
-                                        <td><a href="/product/category/{{$Product->category}}">{{$Product->category}}</a></td>
+                                        <td><a href="/category/{{$Product->category}}">{{$Product->category}}</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -68,7 +66,7 @@
                             </tbody>
                         </table>
                         {{ $Users->links() }}
-                        <h4>Pedidos</h4>
+                        <h4>Productos en Listas</h4>
                         <table class="table" style="width: 80%;">
                             <thead>
                                 <tr>
@@ -77,8 +75,7 @@
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">Total</th>
-                                    <th scope="col">Compra</th>
-                                    <th scope="col">Fecha compra</th>
+                                    <th scope="col">Agregado el dia</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,7 +84,7 @@
                                     <th scope="row">{{$Pedido->id}}</th>
                                     @foreach ($Productos as $Producto)
                                         @if($Producto->id==$Pedido->productid)
-                                        <td><a href="/product/{{ $Producto->id }}">{{$Producto->name}}</a> </td>
+                                        <td><a href="/product/{{ $Producto->id }}">{{$Producto->description}}</a> </td>
                                         @endif
                                     @endforeach
                                     @foreach ($Usuarios as $Usuario)
@@ -97,12 +94,7 @@
                                     @endforeach
                                     <td>{{$Pedido->cantidad}}</td>
                                     <td>${{$Pedido->total}}</td>
-                                    @if(($Pedido->comprado))
-                                        <td>Realizada</td>
-                                    @else
-                                        <td>No realizada</td>
-                                    @endif
-                                    <td>{{$Pedido->fechaCompra}}</td>
+                                    <td>{{$Pedido->created_at}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -14,7 +14,7 @@ use App\product;
 |
 */
 
-Auth::routes();
+//Auth::routes(['verify' => true]);
 
 /*
 //  Partes para todos los usuarios
@@ -22,12 +22,16 @@ Auth::routes();
 /* Rutas de pagina principal */
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('Home', 'HomeController@index')->name('home');
+Route::get('/Home', 'HomeController@index')->name('home');
 
 /* Rutas de vistas de productos */
 Route::get('/product', 'ProductsController@viewProducts');
-Route::get('/product/{id}', 'ProductsController@viewProduct');
+Route::get('/product/{brand}', 'ProductsController@viewProduct');
 
 Route::get('/product/category/{category}', 'ProductsController@viewCategory');
+Route::get('/category/{category}', 'ProductsController@viewCategory');
 Route::get('/search', 'ProductsController@Search');
 
 /* Pagina de usuarios */
@@ -35,6 +39,7 @@ Route::get('/Users/{id}', 'UsersController@viewUsers')->middleware('auth');
 
 /* Pagina de Carrito de compra */
 Route::any('/processAdd/{id}', 'PedidosController@agregar')->middleware('auth');
+Route::any('/Remove/{id}', 'PedidosController@remover')->middleware('auth');
 
 /* Paginas del footer */
 Route::get('/ubicacion', 'HomeController@viewUbicacion');
@@ -68,3 +73,6 @@ Route::any('/create', 'ProductsController@Create');
 
 Route::get('/product/delete/{id}', 'ProductsController@viewDelete');
 Route::get('/delete/{id}', 'ProductsController@Delete');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

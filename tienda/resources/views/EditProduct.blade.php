@@ -7,22 +7,11 @@
                 @if(Auth::user()->type=='admin')
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h4>Editar producto {{$Product->name}}</h4>
+                            <h4>Editar producto {{$Product->brand}}</h4>
                         </div>
                         <div class="container">
                             <form class="form-horizontal" autocomplete="off" method="POST" action="/edit/{{$Product->id}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-2 control-label">Nombre</label>
-                                    <div class="col-md-8">
-                                        <input id="name" type="text" class="form-control" name="name" value="{{ $Product->name }}" placeholder="Ejemplo: Telefono celular" autofocus autocomplete="off">
-                                        @if ($errors->has('name'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                     <label for="description" class="col-md-2 control-label">Descripcion</label>
                                     <div class="col-md-8">
@@ -46,9 +35,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('brand') ? ' has-error' : '' }}">
-                                    <label for="brand" class="col-md-2 control-label">Marca</label>
+                                    <label for="brand" class="col-md-2 control-label">Clave</label>
                                     <div class="col-md-8">
-                                        <input id="brand" type="text" class="form-control" name="brand" value="{{ $Product->brand }}" placeholder="Ejemplo: Huawei" autofocus autocomplete="off">
+                                        <input id="brand" type="text" class="form-control" name="brand" value="{{ $Product->brand }}" placeholder="" autofocus autocomplete="off">
                                         @if ($errors->has('brand'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('brand') }}</strong>

@@ -9,7 +9,7 @@ use Helper;
 class product extends Model
 {
     protected $fillable = [
-        'name', 'description', 'price', 'brand', 'image', 'inventory', 'category'
+        'description', 'price', 'brand', 'image', 'inventory', 'category'
     ];
 
     protected $guarded=[];
@@ -23,14 +23,18 @@ class product extends Model
             set_time_limit(7200);
             foreach($data as $index => $row){
                 if($row[0]){
+                    if (file_exists('images/products/'.$row[0].'.png')) {
+                        $imagen='images/products/'.$row[0].'.png';
+                    }else{
+                        $imagen='images/sample/productSample.png';
+                    }
                     self::updateorCreate([
                         'id'=>$index
                     ],[
-                        'name'=>$row[1],
                         'description'=>$row[1],
                         'price'=>$row[4],
-                        'brand'=>$row[3],
-                        'image'=>'images/sample/productSample.png',
+                        'brand'=>$row[0],
+                        'image'=>$imagen,
                         'inventory'=>$row[2],
                         'category'=>Helper::buscar($row[1])
                     ]);

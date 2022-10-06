@@ -7,25 +7,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><?= e($categoria)?></div>
                 <div class="panel-body">
-                    @if (!Auth::user())
-                    <div class="alert alert-info">
-                            <a href="{{ route('login') }}"><strong>Inicia sesion</strong></a> para realizar compras
-                        </div>
-                    @endif
                     <div class="container">
                         @foreach ($products as $product)
-                        <div class="card mb-3" style="max-width: 540px;">
+                        <div class="card mb-3" style="max-width: 800px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="max-width: 18rem;">
+                                    <a href="/product/{{ $product->id }}"><img src="{{ asset($product->image) }}" alt="{{ $product->brand }}" style="max-width: 18rem;"></a>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                    <h5 class="card-title">{{ $product->name }}</h5>
-                                    <p class="card-text">Precio: ${{ number_format($product->price,2) }}</p>
-                                    <p class="card-text">Existencias: {{ $product->inventory }}</p>
-                                    <a href="/product/category/{{ $product->Category }}" class="card-text">{{ $product->Category }}</a><br>
-                                    <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas</a>
+                                    <a href="/product/{{ $product->id }}"><h2 class="card-title">{{ $product->description }}</h2></a>
+                                    <h4 class="card-text">{{$product->brand}}</h4>
+                                    <h3 class="card-text">${{ number_format($product->price,2) }}</h3>
+                                    <a href="/category/{{ $product->Category }}" class="card-text">{{ $product->category }}</a><br>
+                                    @if (Auth::user())
+                                            @if (Auth::user()->type=='admin')
+                                            <a href="/product/delete/{{ $product->id }}" class="btn btn-danger">Eliminar</a>
+                                            @endif
+                                    @endif
                                     </div>
                                 </div>
                             </div>

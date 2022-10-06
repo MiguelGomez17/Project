@@ -45,11 +45,11 @@ class AdminController extends Controller
     }
 
     public function loadImages(Request $request){
-        if($request!=null&&Auth::user){
+        if($request!=null&&Auth::user()){
             if(Auth::user()->type=='admin'){
                 $validateData = $request->validate([
-                    'file' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000',
-                    'file1' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000',
+                    'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                    'file1' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
                 ]);
                 $file = $request->file('file');
                 $file1 = $request->file('file1');
@@ -64,13 +64,13 @@ class AdminController extends Controller
                 $mainPage->file=($finalPath.$fileName);
                 $mainPage->file1=($finalPath.$file1Name);
                 $mainPage->save();
-                return redirect('/Home');
+                return redirect('/home');
             }
             else{
-                return redirect('/Home');
+                return redirect('/home');
             }
         }else{
-            return redirect('/Home');
+            return redirect('/home');
         }
     }
 
@@ -86,10 +86,10 @@ class AdminController extends Controller
                 $User->save();
                 return redirect('admin');
             }else{
-                return redirect()->route('Home');
+                return redirect()->route('home');
             }
         }else{
-            return redirect()->route('Home');
+            return redirect()->route('home');
         }
     }
 

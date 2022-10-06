@@ -11,16 +11,14 @@
                             <div class="card mb-3" style="max-width: 800px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset($Product->image) }}" alt="{{ $Product->name }}" style="max-width: 24rem;">
+                                        <img src="{{ asset($Product->image) }}" alt="{{ $Product->brand }}" style="max-width: 24rem;">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $Product->name }}</h5>
-                                            <p class="card-text">Descripcion: {{ $Product->description }}</p>
-                                            <p class="card-text">Marca: {{ $Product->brand }}</p>
+                                            <h5 class="card-title">{{ $Product->description }}</h5>
+                                            <p class="card-text">{{ $Product->brand }}</p>
                                             <p class="card-text">Precio: ${{ $Product->price }}</p>
-                                            <p class="card-text">Existencias: {{ $Product->inventory }}</p>
-                                            <a href="/product/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
+                                            <a href="/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
                                         </div>
                                     </div>
                                 </div>

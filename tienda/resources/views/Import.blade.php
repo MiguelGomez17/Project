@@ -12,18 +12,18 @@
                     <div class="alert alert-danger" role="alert">
                         El importar un archivo de productos <a href="#" class="alert-link">eliminara todos los productos</a> de la base de datos actual
                     </div>
-                    <div class="alert alert-info" role="alert">
+                    <div class="alert alert-info" id="load-message" style="display: none;" role="alert">
                         Este proceso puede tardar unos minutos
                     </div>
                     <div class="container">
-                        <form class="form-horizontal" method="POST" action="{{url("import")}}" enctype="multipart/form-data">
+                        <form class="form-horizontal" name="File" method="POST" action="{{url("import")}}" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
                                 <label for="file" class="col-md-2 control-label">Archivo CSV</label>
 
                                 <div class="col-md-6">
                                     <input id="file" type="file" class="form-control" name="file" accept="CSV" required>
-    
+
                                     @if ($errors->has('file'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('file') }}</strong>
@@ -31,7 +31,12 @@
                                     @endif
                                 </div>
                             </div>
-                            <p><button type="submit" class="btn btn-success" name="submit"><i class="fa fa-check"></i> Subir</button></p>
+                            <p><button type="submit" class="btn btn-success" name="submit" onclick="showDiv()"><i class="fa fa-check"></i> Subir</button></p>
+                            <div id="load-bar" class="progress progress-striped active" style="display: none; width: 95%">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="">Espere un momento</span>
+                                </div>
+                            </div>
                         </form>
                         <p>{{session('status')}}</p>
                     </div>
@@ -40,4 +45,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    function showDiv() {
+        if(document.forms["File"]["file"].value !=""){
+            document.getElementById('load-bar').style.display = "block";
+            document.getElementById('load-message').style.display = "block";
+        }
+    }
+</script>
 @endsection

@@ -71,4 +71,16 @@ class PedidosController extends Controller
         $pedido->save();
         return redirect('/Users/'.Auth::user()->id);
     }
+    public function remover($id)
+    {
+        $Pedido = Pedido::find($id);
+        if(Auth::user()){
+            if(Auth::user()->id==$Pedido['userid']){
+                $Pedido->delete();
+                return redirect('/Users/'.Auth::user()->id);
+            }
+        }else{
+            return redirect('/Users/'.Auth::user()->id);
+        }
+    }
 }

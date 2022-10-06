@@ -7,17 +7,21 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Pagina principal</div>
                 <div class="panel-body">
-                    @if (Auth::user())
+                    <div class="alert alert-info">
+                        <i>Los precios mostrados son indicativos/aproximados y pueden cambiar en cualquier momento.<br>
+                        <a href="/ubicacion"><strong>Acuda a la tienda</strong></a> para verificar precios y realizar compras.</i>
+                    </div>
+                    {{-- @if (Auth::user())
                         <div class="alert alert-success">
-                            Bienvenido {{ Auth::user()->name }}
+                            Bienvenido {{ strtok((Auth::user()->name), ' ') }}
                         </div>
                     @else
-                    {{-- <div class="alert alert-info">
+                    <div class="alert alert-info">
                         <a href="{{ route('login') }}"><strong>Inicia sesion</strong></a> para realizar compras
-                    </div> --}}
-                    @endif
-                    <div class="container">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="text-aling: center; max-width: 95%; height: auto;">
+                    </div> 
+                    @endif --}}
+                    <div class="container" style="max-width: 95%">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="text-aling: center;">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
                               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -29,9 +33,9 @@
                                 <div class="item active">
                                     <div class="text-center">
                                         @if($bannerImages[0]->file)
-                                        <img src="{{asset($bannerImages[0]->file)}}" class="img-fluid" alt="Error al cargar imagen">
+                                        <img src="{{asset($bannerImages[0]->file)}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
                                         @else
-                                        <img src="{{$defaultImage}}" class="img-fluid" alt="Error al cargar imagen">
+                                        <img src="{{$defaultImage}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
                                         @endif
                                     </div>
                                 </div>
@@ -39,9 +43,9 @@
                                 <div class="item">
                                     <div class="text-center">
                                         @if($bannerImages[0]->file)
-                                        <img src="{{asset($bannerImages[0]->file1)}}" class="img-fluid" alt="Error al cargar imagen">
+                                        <img src="{{asset($bannerImages[0]->file1)}}" width="100%" class="img-fluid" alt="Error al cargar imagen">
                                         @else
-                                        <img src="{{$defaultImage}}" class="img-fluid" alt="Error al cargar imagen">
+                                        <img src="{{$defaultImage}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
                                         @endif
                                     </div>
                                 </div>
@@ -66,14 +70,13 @@
                                     <div class="col-sm-4">
                                         <div class="card" style="width: 22rem;">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{ $product->name }}</h5>
+                                                <a href="/product/{{ $product->id }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;">
+                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;"></a>
                                                 </div>
                                                 {{-- <p class="card-text">{{ $product->description }}</p> --}}
                                                 <p class="card-text">${{ number_format($product->price,2) }}</p>
-                                                <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                                <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas...</a>
+                                                <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             </div>
                                         </div>
                                     </div>
@@ -92,14 +95,13 @@
                                     <div class="col-sm-4">
                                         <div class="card" style="width: 22rem;">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{ $product->name }}</h5>
+                                                <a href="/product/{{ $product->id }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;">
+                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;"></a>
                                                 </div>
                                                 {{-- <p class="card-text">{{ $product->description }}</p> --}}
                                                 <p class="card-text">${{ $product->price }}</p>
-                                                <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                                <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas...</a>
+                                                <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             </div>
                                         </div>
                                     </div>
@@ -118,14 +120,13 @@
                                     <div class="col-sm-4">
                                         <div class="card" style="width: 22rem;">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{ $product->name }}</h5>
+                                                <a href="/product/{{ $product->id }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;">
+                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;"></a>
                                                 </div>
                                                 <!--<p class="card-text">{{ $product->description }}</p>-->
                                                 <p class="card-text">${{ $product->price }}</p>
-                                                <a href="/product/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                                <a href="/product/{{ $product->id }}" class="btn btn-primary">Ver mas...</a>
+                                                <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             </div>
                                         </div>
                                     </div>
@@ -135,19 +136,16 @@
                         {{ $productsNuevo->links() }}
                     </div>
                 </div>
-                {{-- <div class="panel-heading">Testimonios</div>
+                {{--<div class="panel-heading"></div>
                 <div class="panel-body">
                     <div class="container">
                         <div class="card">
                             <div class="card-body">
-                                <blockquote class="blockquote mb-0">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                    <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                                </blockquote>
+                                <i>*Los precios mostrados son indicativos/aproximados y pueden cambiar en cualquier momento.</i>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <div class="panel-heading">Suscribete</div>
                 <div class="panel-body">
                     <div class="container">
@@ -169,7 +167,7 @@
                             <p><button type="submit" disabled class="btn btn-success" name="submit"><i class="fa fa-check"></i>Enviar</button></p>
                         </form>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
     </div>

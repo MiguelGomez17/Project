@@ -11,17 +11,17 @@ use Auth;
 class ProductsController extends Controller
 {
     /* Vistas de producto, lista de productos y categorias */
-    public function viewProduct($id)
+    public function viewProduct($brand)
     {
-        $Product = Product::find($id);
+        $Product = Product::find($brand);
         if($Product){
             if(($Product->inventory>0)||(Auth::user()&&Auth::user()->type=='admin')){
                 return view('Product',['Product'=>$Product]);
             }else{
-                return redirect()->route('Home');
+                return redirect()->route('home');
             }
         }else{
-            return redirect()->route('Home');
+            return redirect()->route('home');
         }
     }
     public function viewProducts()
@@ -30,7 +30,7 @@ class ProductsController extends Controller
         if($Products){
             return view('Products',['products'=>$Products]);
         }else{
-            return redirect()->route('Home');
+            return redirect()->route('home');
         }
     }
     public function viewCategory($category)
@@ -47,20 +47,21 @@ class ProductsController extends Controller
         if($Products){
             return view('Category',['products'=>$Products,'categoria'=>$category]);
         }else{
-            return redirect()->route('Home');
+            return redirect()->route('home');
         }
     }
 
     public function Search(Request $request){
         $texto=trim($request->get('search'));
+        
         if(Auth::User()){
             if(Auth::User()->type=='admin'){
-                $resultado = DB::table('products')->where('name','LIKE','%'.$texto.'%')->paginate(1000);
+                $resultado = DB::table('products')->where('description','LIKE','%'.$texto.'%')->orwhere('brand','LIKE','%'.$texto.'%')->paginate(10);
             }else{
-                $resultado = DB::table('products')->where('name','LIKE','%'.$texto.'%')->where('inventory','>','0')->paginate(1000);
+                $resultado = DB::table('products')->where('description','LIKE','%'.$texto.'%')->where('inventory','>','0')->orwhere('brand','LIKE','%'.$texto.'%')->paginate(10);
             }
         }else{
-            $resultado = DB::table('products')->where('name','LIKE','%'.$texto.'%')->where('inventory','>','0')->paginate(1000);
+            $resultado = DB::table('products')->where('description','LIKE','%'.$texto.'%')->where('inventory','>','0')->orwhere('brand','LIKE','%'.$texto.'%')->paginate(10);
         }
         return view('Search',['resultados'=>$resultado]);
     }
@@ -82,17 +83,15 @@ class ProductsController extends Controller
     }
     public function create(Request $request){
         $validateData = $request->validate([
-            'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
             'brand' => 'required',
-            'image' => 'nullable|sometimes|max:10000',
+            'image' => 'nullable|sometimes',
             'inventory' => 'required|numeric',
             'category' => 'required'
         ]);
         $data = request()->all();
         $product = new product;
-        $product->name = $data['name'];
         $product->description = $data['description'];
         $product->price = $data['price'];
         $product->brand = $data['brand'];
@@ -101,9 +100,11 @@ class ProductsController extends Controller
         {
             $file = $data['image'];
             $finalPath = 'images/products/';
-            $fileName = time().'-'.$file->getClientOriginalName();
+            $fileName = $data['brand'];
             $uploadSuccess=$data['image']->move($finalPath,$fileName);
             $product->image = ($finalPath.$fileName);
+        }else if (file_exists('images/products/'.$data['brand'].'.png')||file_exists('images/products/'.$data['brand'].'.png')) {
+            $product->image = 'images/products/'.$data['brand'].'.png';
         }else{
             $product->image = 'images/sample/productSample.png';
         }
@@ -161,7 +162,6 @@ class ProductsController extends Controller
     public function Edit(Request $request, $id)
     {
         $validateData = $request->validate([
-            'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
             'brand' => 'required',
@@ -171,7 +171,6 @@ class ProductsController extends Controller
         ]);
         $data = request()->all();
         $product = Product::find($id);
-        $product->name = $data['name'];
         $product->description = $data['description'];
         $product->price = $data['price'];
         $product->brand = $data['brand'];
@@ -180,7 +179,7 @@ class ProductsController extends Controller
         {
             $file = $data['image'];
             $finalPath = 'images/products/';
-            $fileName = time().'-'.$file->getClientOriginalName();
+            $fileName = $data['brand'];
             $uploadSuccess=$data['image']->move($finalPath,$fileName);
             $product->image = ($finalPath.$fileName);
         }else{

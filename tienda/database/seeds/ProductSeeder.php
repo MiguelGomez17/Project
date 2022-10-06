@@ -13,7 +13,6 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $product = new product();
-        $product->name='M4 B3';
         $product->description='Telefono movil M4B3, Memoria RAM: 1GB, Almacenmiento: 8GB';
         $product->price='1500';
         $product->brand='M4';
@@ -22,7 +21,6 @@ class ProductSeeder extends Seeder
         $product->category='Celular';
         $product->save();
         $product2 = new product();
-        $product2->name='Laptop Lenovo';
         $product2->description='Laptop Lenovo, Procesador: Intel Pentium 1.6Ghz, Memoria RAM: 8GB, Disco duro: 1TB';
         $product2->price='4000';
         $product2->brand='Lenovo';
@@ -31,7 +29,6 @@ class ProductSeeder extends Seeder
         $product2->category='Computadora';
         $product2->save();
         $product3 = new product();
-        $product3->name='Nintendo Switch';
         $product3->description='Nintendo color gris. Pila: 1 Polimero de litio necesarias e incluidas';
         $product3->price='7899.00';
         $product3->brand='Nintendo';
