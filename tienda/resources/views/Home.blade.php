@@ -1,25 +1,16 @@
 @extends('layouts.app')
-
+@section('mytitle', '| Inicio')
 @section('content')
-<div class="container">
+<div class="container" style="width: 95%">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Pagina principal</div>
                 <div class="panel-body">
                     <div class="alert alert-info">
-                        <i>Los precios mostrados son indicativos/aproximados y pueden cambiar en cualquier momento.<br>
-                        <a href="/ubicacion"><strong>Acuda a la tienda</strong></a> para verificar precios y realizar compras.</i>
+                        Pregunta por nuestros precios en <a href="https://www.facebook.com/dicesa1" target="_blank"><strong>Facebook</strong></a><br>
+                        <a href="/ubicacion"><strong>Acuda a la tienda</strong></a> para realizar compras.
                     </div>
-                    {{-- @if (Auth::user())
-                        <div class="alert alert-success">
-                            Bienvenido {{ strtok((Auth::user()->name), ' ') }}
-                        </div>
-                    @else
-                    <div class="alert alert-info">
-                        <a href="{{ route('login') }}"><strong>Inicia sesion</strong></a> para realizar compras
-                    </div> 
-                    @endif --}}
                     <div class="container" style="max-width: 95%">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel" style="text-aling: center;">
                             <!-- Indicators -->
@@ -68,14 +59,12 @@
                             @foreach ($productsOferta as $product)
                                 @if($product->inventory>0)
                                     <div class="col-sm-4">
-                                        <div class="card" style="width: 22rem;">
+                                        <div class="card border-dark" style="max-width: 22rem;">
                                             <div class="card-body">
                                                 <a href="/product/{{ $product->id }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;"></a>
+                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
                                                 </div>
-                                                {{-- <p class="card-text">{{ $product->description }}</p> --}}
-                                                <p class="card-text">${{ number_format($product->price,2) }}</p>
                                                 <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             </div>
                                         </div>
@@ -93,14 +82,12 @@
                             @foreach ($productsVendidos as $product)
                                 @if($product->inventory>0)
                                     <div class="col-sm-4">
-                                        <div class="card" style="width: 22rem;">
+                                        <div class="card border-dark" style="max-width: 22rem;">
                                             <div class="card-body">
                                                 <a href="/product/{{ $product->id }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;"></a>
+                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
                                                 </div>
-                                                {{-- <p class="card-text">{{ $product->description }}</p> --}}
-                                                <p class="card-text">${{ $product->price }}</p>
                                                 <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             </div>
                                         </div>
@@ -119,13 +106,11 @@
                                 @if($product->inventory>0)
                                     <div class="col-sm-4">
                                         <div class="card" style="width: 22rem;">
-                                            <div class="card-body">
+                                            <div class="card-body border-dark">
                                                 <a href="/product/{{ $product->id }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="max-width: 18rem;"></a>
+                                                    <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
                                                 </div>
-                                                <!--<p class="card-text">{{ $product->description }}</p>-->
-                                                <p class="card-text">${{ $product->price }}</p>
                                                 <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                             </div>
                                         </div>

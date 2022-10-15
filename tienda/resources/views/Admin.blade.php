@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('mytitle', '| Administracion')
 @section('content')
 <div class="container">
     <div class="row">
@@ -20,7 +20,6 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Precio</th>
                                     <th scope="col">Clave</th>
                                     <th scope="col">Categoria</th>
                                 </tr>
@@ -30,7 +29,6 @@
                                     <tr>
                                         <th scope="row">{{$Product->id}}</th>
                                         <td><a href="/product/{{ $Product->id }}">{{$Product->description}}</a> </td>
-                                        <td>${{number_format($Product->price,2)}}</td>
                                         <td>{{$Product->brand}}</td>
                                         <td><a href="/category/{{$Product->category}}">{{$Product->category}}</a></td>
                                     </tr>
@@ -83,7 +81,7 @@
                                 <tr>
                                     <th scope="row">{{$Pedido->id}}</th>
                                     @foreach ($Productos as $Producto)
-                                        @if($Producto->id==$Pedido->productid)
+                                        @if($Producto->brand==$Pedido->productid)
                                         <td><a href="/product/{{ $Producto->id }}">{{$Producto->description}}</a> </td>
                                         @endif
                                     @endforeach

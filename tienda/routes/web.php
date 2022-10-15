@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\UsersController;
 use App\product;
+use App\Pedido;
+use App\Mail\Verificacion;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +34,12 @@ Route::get('/product/{brand}', 'ProductsController@viewProduct');
 
 Route::get('/product/category/{category}', 'ProductsController@viewCategory');
 Route::get('/category/{category}', 'ProductsController@viewCategory');
+Route::get('/ZonaGamer', 'ProductsController@viewGamer');
 Route::get('/search', 'ProductsController@Search');
 
 /* Pagina de usuarios */
 Route::get('/Users/{id}', 'UsersController@viewUsers')->middleware('auth');
+Route::get('/Verify', 'UsersController@viewVerify');
 
 /* Pagina de Carrito de compra */
 Route::any('/processAdd/{id}', 'PedidosController@agregar')->middleware('auth');
@@ -76,3 +80,11 @@ Route::get('/delete/{id}', 'ProductsController@Delete');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/mail', function(){
+    $codigo = rand(1000, 9999);
+    $correo = new Verificacion;
+    Mail::to('miguel.gomez.rent@gmail.com')->send($correo);
+    return($codigo);
+});

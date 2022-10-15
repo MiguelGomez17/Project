@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('mytitle', '| Importar lista de productos')
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,7 +9,7 @@
                     Importar archivo
                 </div>
                 <div class="panel-body">
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger" id="warning" role="alert">
                         El importar un archivo de productos <a href="#" class="alert-link">eliminara todos los productos</a> de la base de datos actual
                     </div>
                     <div class="alert alert-info" id="load-message" style="display: none;" role="alert">
@@ -51,6 +51,7 @@
         if(document.forms["File"]["file"].value !=""){
             document.getElementById('load-bar').style.display = "block";
             document.getElementById('load-message').style.display = "block";
+            document.getElementById('warning').style.display = "none";
         }
     }
 </script>

@@ -14,7 +14,7 @@ class PedidoSeeder extends Seeder
     {
         $pedido = new Pedido();
         $pedido->userid='2';
-        $pedido->productid='3';
+        $pedido->productid='ACABO';
         $pedido->cantidad='2';
         $pedido->total='150';
         $pedido->comprado=false;
@@ -22,7 +22,7 @@ class PedidoSeeder extends Seeder
         $pedido->save();
         $pedido2 = new Pedido();
         $pedido2->userid='1';
-        $pedido2->productid='2';
+        $pedido2->productid='ASDASAV';
         $pedido2->cantidad='1';
         $pedido2->total='720';
         $pedido2->comprado=true;

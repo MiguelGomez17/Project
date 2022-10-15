@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>{{ $title }}</title>
 @section('content')
 <div class="container">
     <div class="row">
@@ -19,7 +19,7 @@
                             <h1>Lista de compra</h1>
                             @foreach ($Pedidos as $pedido)
                                 @foreach ($Products as $product)
-                                @if(($pedido->productid)==($product->id))
+                                @if(($pedido->productid)==($product->brand))
                                     <div class="card mb-3" style="max-width: 800px;">
                                         <div class="row g-0">
                                         <div class="col-md-4">
@@ -28,9 +28,7 @@
                                         <div class="col-md-8">
                                             <div class="card-body">
                                             <a href="/product/{{ $product->id }}" class="card-title"><h2>{{ $product->description }}</h2></a>
-                                            <h3 class="card-text">Precio: ${{number_format($product->price,2) }}</h3>
                                             <h3 class="card-text">Cantidad: {{ $pedido->cantidad }}</h3>
-                                            <h3 class="card-text">Total: ${{ number_format(($product->price)*($pedido->cantidad),2) }}</h3>
                                             @if(($pedido->comprado))
                                             <h3 class="card-text">Fecha de compra: {{ $pedido->fechaCompra }}</h3>
                                             @else

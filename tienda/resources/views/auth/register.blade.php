@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@section('mytitle', '| Registrar usuario')
 @section('content')
+@if (Auth::user()&&Auth::user()->type==='admin')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -77,4 +78,7 @@
         </div>
     </div>
 </div>
+@else
+<?=redirect()->route('home');?> 
+@endif
 @endsection

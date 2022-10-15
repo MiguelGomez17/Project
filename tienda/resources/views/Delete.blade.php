@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title>{{ $title }}</title>
 
 @section('content')
 <div class="container">
@@ -21,7 +22,6 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $Product->description }}</h5>
                                             <h3 class="card-text">{{ $Product->brand }}</h3>
-                                            <h3 class="card-text">${{ $Product->price }}</h3>
                                             <a href="/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
                                             <a href="/product/" class="btn btn-primary">No, mantener</a>
                                             @if(Auth::user())

@@ -8,11 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>DICES@ | Computación para todos</title>
+    <title>DICES@ @yield('mytitle')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/269788d904.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -45,13 +47,13 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Inicia sesion</a></li>
-                            <li><a href="{{ route('register') }}">Registrate</a></li>
+                            {{--<li><a href="{{ route('register') }}">Registrate</a></li>--}}
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     Bienvenido {{ strtok((Auth::user()->name), ' ')  }}! <span class="caret"></span>
                                 </a>
-
+                                
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="/Users/{{ Auth::user()->id }}">Mi perfil</a>
@@ -90,6 +92,9 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
+                        <li class="bg-info text-white">
+                            <a href="{{ route('home') }}">Pagina Principal</a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                 Computación<span class="caret"></span>
@@ -190,7 +195,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Contra el COVID<span class="caret"></span>
+                                Otros<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/category/Careta">Careta</a></li>
@@ -200,13 +205,6 @@
                                 <li><a href="/category/Pulso">Pulso-oximetro</a></li>
                                 <li><a href="/category/Termometro">Termometros</a></li>
                                 <li><a href="/category/Toallas">Toallas Desinfectantes</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                Otros<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
                                 <li><a href="/category/Botella De Tinta">Botella De Tinta</a></li>
                                 <li><a href="/category/Foco">Focos Leds</a></li>
                                 <li><a href="/category/Folders">Folders</a></li>
@@ -223,6 +221,11 @@
                                 <li><a href="/category/Videoconsola">Videoconsolas</a></li>
                                 <li><a href="/category/Undefined">Otros</a></li>
                             </ul>
+                        </li>
+                        <li class="bg-danger text-white">
+                            <a href="/ZonaGamer">
+                                ZONA GAMER
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -271,7 +274,7 @@
                     Redes sociales
                     </h6>
                     <p>
-                    <a href="https://www.facebook.com/dicesa1" class="text-reset">Facebook</a>
+                    <a href="https://www.facebook.com/dicesa1" class="text-reset" target="_blank">Facebook</a>
                     </p>
                 </div>
                 <!-- Grid column -->

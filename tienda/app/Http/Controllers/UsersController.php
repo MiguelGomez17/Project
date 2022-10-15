@@ -18,7 +18,8 @@ class UsersController extends Controller
                 $Pedidos = Pedido::where('userid', $id)->paginate(10);
                 $Productos = product::all();
                 if($User){
-                    return view('Users',['Usuario'=>$User,'Pedidos'=>$Pedidos,'Products'=>$Productos]);
+                    $title = 'DICES@ | '.$User->name;
+                    return view('Users',['Usuario'=>$User,'Pedidos'=>$Pedidos,'Products'=>$Productos], compact('title'));
                 }else{
                     return redirect()->route('home');
                 }
@@ -28,6 +29,10 @@ class UsersController extends Controller
         }else{
             return redirect()->route('home');
         }
-        
+    }
+
+    public function viewVerify()
+    {
+        return view('auth.verify');
     }
 }

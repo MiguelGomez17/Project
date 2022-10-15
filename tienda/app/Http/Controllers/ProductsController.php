@@ -16,7 +16,8 @@ class ProductsController extends Controller
         $Product = Product::find($brand);
         if($Product){
             if(($Product->inventory>0)||(Auth::user()&&Auth::user()->type=='admin')){
-                return view('Product',['Product'=>$Product]);
+                $title = 'DICES@ | '.$Product->description;
+                return view('Product',['Product'=>$Product], compact('title'));
             }else{
                 return redirect()->route('home');
             }
@@ -36,16 +37,36 @@ class ProductsController extends Controller
     public function viewCategory($category)
     {
         if(Auth::User()){
-            if(Auth::User()->type=='admin'){
+            /*if(Auth::User()->type=='admin'){
                 $Products = Product::where('category', $category)->paginate(20);
-            }else{
+            }else*/{
                 $Products = Product::where('category', $category)->where('inventory','>','0')->paginate(20);
             }
         }else{
             $Products = Product::where('category', $category)->where('inventory','>','0')->paginate(20);
         }
         if($Products){
-            return view('Category',['products'=>$Products,'categoria'=>$category]);
+            $title = 'DICES@ | '.$category;
+            return view('Category',['products'=>$Products,'categoria'=>$category], compact('title'));
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
+    public function viewGamer()
+    {
+        if(Auth::User()){
+            /*if(Auth::User()->type=='admin'){
+                $Products = Product::where('description','LIKE','%GAMER%')->paginate(20);
+            }else*/{
+                $Products = Product::where('description','LIKE','%GAMER%')->where('inventory','>','0')->paginate(20);
+            }
+        }else{
+            $Products = Product::where('description','LIKE','%GAMER%')->where('inventory','>','0')->paginate(20);
+        }
+        if($Products){
+            $title = 'DICES@ | ZONA GAMER';
+            return view('Category',['products'=>$Products,'categoria'=>'Zona Gamer'], compact('title'));
         }else{
             return redirect()->route('home');
         }
@@ -55,15 +76,16 @@ class ProductsController extends Controller
         $texto=trim($request->get('search'));
         
         if(Auth::User()){
-            if(Auth::User()->type=='admin'){
+            /*if(Auth::User()->type=='admin'){
                 $resultado = DB::table('products')->where('description','LIKE','%'.$texto.'%')->orwhere('brand','LIKE','%'.$texto.'%')->paginate(10);
-            }else{
+            }else*/{
                 $resultado = DB::table('products')->where('description','LIKE','%'.$texto.'%')->where('inventory','>','0')->orwhere('brand','LIKE','%'.$texto.'%')->paginate(10);
             }
         }else{
             $resultado = DB::table('products')->where('description','LIKE','%'.$texto.'%')->where('inventory','>','0')->orwhere('brand','LIKE','%'.$texto.'%')->paginate(10);
         }
-        return view('Search',['resultados'=>$resultado]);
+        $title = 'DICES@ | '.$texto;
+        return view('Search',['resultados'=>$resultado, 'Busqueda'=>$texto], compact('title'));
     }
 
 
@@ -100,10 +122,10 @@ class ProductsController extends Controller
         {
             $file = $data['image'];
             $finalPath = 'images/products/';
-            $fileName = $data['brand'];
+            $fileName = $data['brand'].'.png';
             $uploadSuccess=$data['image']->move($finalPath,$fileName);
             $product->image = ($finalPath.$fileName);
-        }else if (file_exists('images/products/'.$data['brand'].'.png')||file_exists('images/products/'.$data['brand'].'.png')) {
+        }else if (file_exists('images/products/'.$data['brand'].'.png')) {
             $product->image = 'images/products/'.$data['brand'].'.png';
         }else{
             $product->image = 'images/sample/productSample.png';
@@ -179,7 +201,7 @@ class ProductsController extends Controller
         {
             $file = $data['image'];
             $finalPath = 'images/products/';
-            $fileName = $data['brand'];
+            $fileName = $data['brand'].'.png';
             $uploadSuccess=$data['image']->move($finalPath,$fileName);
             $product->image = ($finalPath.$fileName);
         }else{

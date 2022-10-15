@@ -23,21 +23,24 @@ class product extends Model
             set_time_limit(7200);
             foreach($data as $index => $row){
                 if($row[0]){
-                    if (file_exists('images/products/'.$row[0].'.png')) {
-                        $imagen='images/products/'.$row[0].'.png';
-                    }else{
-                        $imagen='images/sample/productSample.png';
+                    if(substr($row[3], -1)!="X" && strtok($row[1],' ') != "SERVICIO")
+                    {
+                        if (file_exists('images/products/'.$row[0].'.png')) {
+                            $imagen='images/products/'.$row[0].'.png';
+                        }else{
+                            $imagen='images/sample/productSample.png';
+                        }
+                        self::updateorCreate([
+                            'id'=>$index
+                        ],[
+                            'description'=>utf8_encode($row[1]),
+                            'price'=>$row[4],
+                            'brand'=>$row[0],
+                            'image'=>$imagen,
+                            'inventory'=>$row[2],
+                            'category'=>Helper::buscar($row[1])
+                        ]);
                     }
-                    self::updateorCreate([
-                        'id'=>$index
-                    ],[
-                        'description'=>$row[1],
-                        'price'=>$row[4],
-                        'brand'=>$row[0],
-                        'image'=>$imagen,
-                        'inventory'=>$row[2],
-                        'category'=>Helper::buscar($row[1])
-                    ]);
                 }
             }
             unlink($file);

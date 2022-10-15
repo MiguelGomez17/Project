@@ -62,7 +62,7 @@ class PedidosController extends Controller
         $Product = product::find($id);
         $data = request()->all();
         $pedido = new Pedido;
-        $pedido->productid = $id;
+        $pedido->productid = $Product->brand;
         $pedido->userid = Auth::user()->id;
         $pedido->cantidad = $data['cantidad'];
         $pedido->total = $data['cantidad'] * ($Product->price);
