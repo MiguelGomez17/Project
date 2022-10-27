@@ -33,7 +33,7 @@ class HomeController extends Controller
         $productsOferta = DB::table('products')->where('inventory','>',0)->where('price','<',200)->orderBy('price', 'asc')->simplePaginate(3, ['*'], 'Ofertas');
         $productsVendidos = DB::table('products')->where('inventory','>',0)->where('price','>',1000)->orderBy('inventory','asc')->simplePaginate(3, ['*'], 'Vendidos');
         $productsNuevo = DB::table('products')->where('inventory','>',0)->where('inventory','<',5)->orderBy('inventory', 'asc')->simplePaginate(3, ['*'], 'Nuevos');
-        return view('Home', ['productsOferta' => $productsOferta,
+        return view('home', ['productsOferta' => $productsOferta,
                                 'productsNuevo' => $productsNuevo,
                                 'productsVendidos' => $productsVendidos,
                                 'bannerImages' => $bannerImages,

@@ -25,6 +25,7 @@
                                         @if (Auth::user())
                                             @if (Auth::user()->type=='admin')
                                             <a href="/product/delete/{{ $product->id }}" class="btn btn-danger">Eliminar</a>
+                                            <a href="/product/edit/{{ $product->id }}" class="btn btn-success">Editar</a>
                                             @endif
                                         @endif
                                     </div>

@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\File;
 use App\Pedido;
 use App\product;
 use App\User;
+use App\categories;
 use App\mainPage;
 
 class AdminController extends Controller
 {
     public function viewAdmin(){
-        $Products = DB::table('products')->paginate(100, ['*'], 'products');
+        $Products = DB::table('products')->where('category','!=','NAN')->paginate(100, ['*'], 'products');
         $Users = DB::table('users')->paginate(10, ['*'], 'users');
         $Pedidos = DB::table('pedidos')->paginate(10, ['*'], 'pedidos');
 
@@ -25,10 +26,10 @@ class AdminController extends Controller
             if(Auth::user()->type==='admin'){
                 return view('Admin',['Products'=>$Products,'Pedidos'=>$Pedidos,'Users'=>$Users,'Productos'=>$Productos,'Usuarios'=>$Usuarios]);
             }else{
-                return redirect()->route('Home');
+                return redirect()->route('home');
             }
         }else{
-            return redirect()->route('Home');
+            return redirect()->route('home');
         }
     }
 
@@ -37,10 +38,10 @@ class AdminController extends Controller
             if(Auth::user()->type==='admin'){
                 return view('Custom');
             }else{
-                return redirect()->route('Home');
+                return redirect()->route('home');
             }
         }else{
-            return redirect()->route('Home');
+            return redirect()->route('home');
         }
     }
 
@@ -64,13 +65,13 @@ class AdminController extends Controller
                 $mainPage->file=($finalPath.$fileName);
                 $mainPage->file1=($finalPath.$file1Name);
                 $mainPage->save();
-                return redirect('/home');
+                return redirect('home');
             }
             else{
-                return redirect('/home');
+                return redirect('home');
             }
         }else{
-            return redirect('/home');
+            return redirect('home');
         }
     }
 

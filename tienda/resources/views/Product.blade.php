@@ -20,40 +20,20 @@
                             <h4 class="card-text">{{ $Product->brand }}</h4>
                             <a href="/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
                             <a href="https://m.me/Dicesa1?ref=Precios" target="_blank" class="btn btn-primary">
-                                Pregunta por nuestros precios
+                                Contactanos por messenger
+                            </a>
+                            <a href="https://api.whatsapp.com/send?phone=526181784640" target="_blank" class="btn btn-success">
+                                Contactanos por WhatsApp
                             </a>
                             @if(Auth::user())
-                                @if($Product->inventory>0)
-                                {{--<h3>Agregar a mi lista</h3>
-                                <form class="form-horizontal" autocomplete="off" method="POST" action="/processAdd/{{$Product->id}}">
-                                    {{ csrf_field() }}
-                                    <div class="form-group{{ $errors->has('cantidad') ? ' has-error' : '' }}">
-                                        <label for="cantidad" class="col-md-2 control-label">Cantidad</label>
-                                        <div class="col-md-8">
-                                            <input id="cantidad" type="number" class="form-control" name="cantidad" value="{{ old('cantidad') }}" min="1" max="100" onkeyup="this.value = Math.round(this.value);">
-                                            @if ($errors->has('cantidad'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('cantidad') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <div class="col-md-8 col-md-offset-2">
-                                            <button type="submit" class="btn btn-primary">
-                                                Agregar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>--}}
-                                @endif
                                 @if(Auth::user()->type=='admin')
-                                    <a href="/product/edit/{{ $Product->id }}" class="btn btn-success">Editar</a>
-                                    <a href="/product/delete/{{ $Product->id }}" class="btn btn-danger">Eliminar</a>
+                                    <br>
+                                    <h4>
+                                        Opciones de administrador
+                                    </h4>
+                                    <a href="/product/edit/{{ $Product->id }}" class="btn btn-success">Editar producto</a>
+                                    <a href="/product/delete/{{ $Product->id }}" class="btn btn-danger">Eliminar producto</a>
                                 @endif
-                            @else
-                                
                             @endif
                             </div>
                         </div>

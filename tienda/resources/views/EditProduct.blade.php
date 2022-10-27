@@ -11,6 +11,12 @@
                             <h4>Editar producto {{$Product->brand}}</h4>
                         </div>
                         <div class="container">
+                        <div class="item">
+                            <div class="text-center">
+                                <a href="/product/{{ $Product->id }}"><img src="{{ asset($Product->image) }}" alt="{{ $Product->brand }}" style="max-width: 18rem;"></a>
+                            </div>
+                        </div>
+                        <div class="text-center">
                             <form class="form-horizontal" autocomplete="off" method="POST" action="/edit/{{$Product->id}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
