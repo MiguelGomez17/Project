@@ -17,7 +17,6 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $Product->description }}</h5>
                                             <p class="card-text">{{ $Product->brand }}</p>
-                                            <a href="/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
                                         </div>
                                     </div>
                                 </div>

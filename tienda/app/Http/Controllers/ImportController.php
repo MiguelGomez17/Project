@@ -12,6 +12,7 @@ class ImportController extends Controller
     {
         if(Auth::user()){
             if(Auth::user()->type==='admin'){
+                array_map('unlink', glob(resource_path('pending-files/*csv')));
                 return view('catImport');
             }else{
                 return redirect()->route('home');

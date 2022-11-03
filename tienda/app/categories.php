@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Helper;
 
 class categories extends Model
 {
@@ -21,13 +22,9 @@ class categories extends Model
             DB::table('categories')->truncate();
             set_time_limit(7200);
             foreach($data as $index => $row){
-                if($row[0]){
-                    if($row[1]=='CON')
-                    {
-                        $imagen='images/category/CON1.png';
-                    }
-                    elseif (file_exists('images/category/'.$row[1].'.png')) {
-                        $imagen='images/category/'.$row[1].'.png';
+                if($row[1]){
+                    if (file_exists('images/category/'.$row[0].'.png')) {
+                        $imagen='images/category/'.$row[0].'.png';
                     }else{
                         $imagen='images/category/categorySample.png';
                     }
@@ -35,8 +32,8 @@ class categories extends Model
                         'id'=>$index
                     ],[
                         'categoria'=>$row[0],
-                        'subcategoria'=>$row[1],
-                        'titulo'=>utf8_encode($row[2]),
+                        'subcategoria'=>Helper::categoria($row[2],$row[3],$row[4],$row[5]),
+                        'titulo'=>utf8_encode($row[1]),
                         'image'=>$imagen
                     ]);
                 }

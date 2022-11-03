@@ -31,7 +31,6 @@
                                     <div class="card-body">
                                     <a href="/product/{{ $product->id }}"><h2 class="card-title">{{ $product->description }}</h2></a>
                                     <h4 class="card-text">{{$product->brand}}</h4>
-                                    <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
                                     @if (Auth::user())
                                     @if (Auth::user()->type=='admin')
                                     <a href="/product/delete/{{ $product->id }}" class="btn btn-danger">Eliminar</a>

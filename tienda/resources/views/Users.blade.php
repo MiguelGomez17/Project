@@ -17,6 +17,7 @@
                     @if (Auth::user()->id===$Usuario['id']||Auth::user()->type==='admin')
                         <div class="panel-body">
                             <h1>Lista de compra</h1>
+                            {{--
                             @foreach ($Pedidos as $pedido)
                                 @foreach ($Products as $product)
                                 @if(($pedido->productid)==($product->brand))
@@ -41,6 +42,7 @@
                                 @endif
                                 @endforeach
                             @endforeach
+                            --}}
                         </div>
                         {{ $Pedidos->links() }}
                     @else

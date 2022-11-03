@@ -54,6 +54,8 @@ Route::get('/about', 'HomeController@viewAbout');
 //  Partes solo para administradores
 */
 
+
+
 /* Paginas de administrador */
 Route::get('/admin', 'AdminController@viewAdmin')/*->middleware('auth')*/;
 Route::get('/admin/{id}', 'AdminController@upgrade')/*->middleware('auth')*/;
@@ -81,6 +83,10 @@ Route::get('/import/done', function(){
     return redirect("/admin");
 });
 
+Route::get('/debug/{data}', function(){
+    return $data;
+});
+
 /* Paginas de creacion de productos */
 Route::get('/products/create', 'ProductsController@viewCreate');
 Route::get('/product/edit/{id}', 'ProductsController@viewEdit');
@@ -89,11 +95,15 @@ Route::any('/create', 'ProductsController@Create');
 
 Route::get('/product/delete/{id}', 'ProductsController@viewDelete');
 Route::get('/delete/{id}', 'ProductsController@Delete');
-Auth::routes();
 
 Route::get('/mail', function(){
     $codigo = rand(1000, 9999);
     $correo = new Verificacion;
     Mail::to('miguel.gomez.rent@gmail.com')->send($correo);
     return($codigo);
+});
+
+//Auth::routes();
+Route::prefix('19216801/')->group(function(){
+    Auth::routes();
 });

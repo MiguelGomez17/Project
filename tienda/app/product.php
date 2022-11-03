@@ -38,7 +38,7 @@ class product extends Model
                             'brand'=>$row[0],
                             'image'=>$imagen,
                             'inventory'=>$row[2],
-                            'category'=>Helper::buscar($row[1])
+                            'category'=>Helper::buscar($row[0])
                         ]);
                     }
                 }

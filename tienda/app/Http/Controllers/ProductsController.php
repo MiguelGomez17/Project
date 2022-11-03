@@ -16,7 +16,7 @@ class ProductsController extends Controller
     {
         $Product = Product::find($brand);
         if($Product){
-            if(($Product->inventory>0)/*||(Auth::user()&&Auth::user()->type=='admin')*/){
+            if(($Product->inventory>0)||(Auth::user()&&Auth::user()->type=='admin')){
                 $title = 'DICES@ | '.$Product->description;
                 return view('Product',['Product'=>$Product], compact('title'));
             }
@@ -25,26 +25,21 @@ class ProductsController extends Controller
     }
     public function viewProducts()
     {
-        $Products = DB::table('products')->paginate(1000);
+        //$Products = DB::table('products')->where('image','=', 'images/sample/productSample.png')->where('inventory','>', '0')->paginate(25);
+        $Products = DB::table('products')->where('inventory','>', '0')->paginate(25);
+        $Categorias = categories::all();
         if($Products){
-            return view('Products',['products'=>$Products]);
+            return view('Products',['products'=>$Products, 'Categorias'=>$Categorias]);
         }else{
             return redirect()->route('home');
         }
     }
     public function viewCategory($category)
     {
-        if(!is_numeric($category))
-        {
-            $categoria = categories::where('subcategoria', $category)->first();
-        }            
-        else
-        {
-            $categoria = categories::where('categoria', $category)->first();
-        }
+        $categoria = categories::where('categoria', $category)->first();
         if($categoria)
         {
-            $Products = Product::where('category', $categoria->subcategoria)->where('inventory','>','0')->paginate(1000);
+            $Products = Product::where('category', 'LIKE', '%'.$category.'%')->where('inventory','>','0')->paginate(1000);
             if($Products){
                 $title = 'DICES@ | '.$categoria->titulo;
                 return view('Category',['products'=>$Products,'categoria'=>$categoria], compact('title'));
@@ -121,7 +116,8 @@ class ProductsController extends Controller
             if(Auth::user()->type==='admin'){
                 $Product = Product::find($id);
                 if($Product){
-                    return view('Delete',['Product'=>$Product]);
+                    $title = 'DICES@ | Eliminar '.$Product->brand;
+                    return view('Delete',['Product'=>$Product], compact('title'));
                 }
             }
         }
@@ -218,16 +214,13 @@ class ProductsController extends Controller
         {
             $file = $data['image'];
             $finalPath = 'images/category/';
-            if($category['subcategoria']=='CON')
-                $fileName = $category['subcategoria'].'1.png';
-            else
-                $fileName = $category['subcategoria'].'.png';
+            $fileName = $category['categoria'].'.png';
             $uploadSuccess=$data['image']->move($finalPath,$fileName);
             $category->image = ($finalPath.$fileName);
         }else{
             $category->image = 'images/sample/categorySample.png';
         }
         $category->save();
-        return redirect('category/'.$category->subcategoria);
+        return redirect('category/'.$category->categoria);
     }
 }

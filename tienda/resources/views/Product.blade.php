@@ -18,7 +18,16 @@
                             <div class="card-body">
                             <h2 class="card-title">{{ $Product->description }}</h2>
                             <h4 class="card-text">{{ $Product->brand }}</h4>
+                            {{--
+                            @if(strpos($Product->category,','))
+                            @php($categorias = explode(',',$Product->category))
+                            @foreach($categorias as $categoria)
+                            <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
+                            @endforeach
+                            @else
                             <a href="/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
+                            @endif
+                            --}}
                             <a href="https://m.me/Dicesa1?ref=Precios" target="_blank" class="btn btn-primary">
                                 Contactanos por messenger
                             </a>

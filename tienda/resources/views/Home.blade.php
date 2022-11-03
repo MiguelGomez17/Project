@@ -65,7 +65,16 @@
                                                 <div class="text-center" style="height: 22rem; width: auto;">
                                                     <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
                                                 </div>
+                                                {{--
+                                                @if(strpos($product->category,','))
+                                                @php($categorias = explode(',',$product->category))
+                                                @foreach($categorias as $categoria)
+                                                <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
+                                                @endforeach
+                                                @else
                                                 <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
+                                                @endif
+                                                --}}
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +97,16 @@
                                                 <div class="text-center" style="height: 22rem; width: auto;">
                                                     <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
                                                 </div>
+                                                {{--
+                                                @if(strpos($product->category,','))
+                                                @php($categorias = explode(',',$product->category))
+                                                @foreach($categorias as $categoria)
+                                                <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
+                                                @endforeach
+                                                @else
                                                 <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
+                                                @endif
+                                                --}}
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +129,16 @@
                                                 <div class="text-center" style="height: 22rem; width: auto;">
                                                     <a href="/product/{{ $product->id }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
                                                 </div>
+                                                {{--
+                                                @if(strpos($product->category,','))
+                                                @php($categorias = explode(',',$product->category))
+                                                @foreach($categorias as $categoria)
+                                                <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
+                                                @endforeach
+                                                @else
                                                 <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
+                                                @endif
+                                                --}}
                                             </div>
                                         </div>
                                     </div>

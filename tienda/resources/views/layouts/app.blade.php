@@ -95,11 +95,11 @@
                     <ul class="nav navbar-nav">
                         @php( $category = \App\categories::all())
                         @foreach($category as $categoria)
-                        @if($categoria->categoria != 000&&($categoria->categoria == 100||$categoria->categoria % 100 == 0))
+                        @if($categoria->categoria != 000 && ($categoria->categoria == '100'||$categoria->categoria % 100 == 0))
                         @php($actual = $categoria->categoria)
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                {{ucwords(strtolower($categoria->titulo))}}<span class="caret"></span>
+                                {{ucwords(mb_strtolower($categoria->titulo))}}<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach($category as $categoria)
@@ -194,5 +194,24 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('js/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('js/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 </body>
 </html>
