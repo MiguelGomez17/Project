@@ -34,9 +34,29 @@ class AdminController extends Controller
     }
 
     public function viewCustom(){
+        $imagenes = mainPage::all();
         if(Auth::user()){
             if(Auth::user()->type==='admin'){
-                return view('Custom');
+                return view('Custom',['imagenes'=>$imagenes]);
+            }else{
+                return redirect()->route('home');
+            }
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
+    public function customDelete($id){
+        if(Auth::user()){
+            if(Auth::user()->type==='admin'){
+                $imagen = mainPage::find($id);
+                if($imagen)
+                {
+                    File::delete($imagen->file);
+                    $imagen->delete();
+                }
+                $imagenes = mainPage::all();
+                return view('Custom',['imagenes'=>$imagenes]);
             }else{
                 return redirect()->route('home');
             }
@@ -49,23 +69,17 @@ class AdminController extends Controller
         if($request!=null&&Auth::user()){
             if(Auth::user()->type=='admin'){
                 $validateData = $request->validate([
-                    'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-                    'file1' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                    'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
                 ]);
                 $file = $request->file('file');
                 $file1 = $request->file('file1');
                 $finalPath = 'images/homepage/';
-                $fileName = time().'-'.$file->getClientOriginalName();
-                $file1Name = time().'-'.$file1->getClientOriginalName();
-                File::deleteDirectory(public_path('images/homepage/'));
+                $fileName = 'BANNER'.time();
                 $uploadSuccess=$request->file('file')->move($finalPath,$fileName);
-                $uploadSuccess=$request->file('file1')->move($finalPath,$file1Name);
-                DB::table('main_pages')->truncate();
                 $mainPage = new mainPage;
                 $mainPage->file=($finalPath.$fileName);
-                $mainPage->file1=($finalPath.$file1Name);
                 $mainPage->save();
-                return redirect('home');
+                return redirect('custom');
             }
             else{
                 return redirect('home');

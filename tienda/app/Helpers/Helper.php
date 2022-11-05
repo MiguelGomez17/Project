@@ -20,15 +20,25 @@ class Helper
 
 
     public static function buscar($valor){
-        $productCat = str_split($valor, 3);
+        $productCat = str_split($valor, 4);
         $Categorias = DB::table('categories')->where('subcategoria','LIKE','%'.$productCat[0].'%')->get();
 
         $final = '';
         if($Categorias){
             foreach($Categorias as $category){
                 $final .= ($category->categoria).',';
-            }    
-        }        
+            }
+        }
+        if($final == '')
+        {
+            $productCat = str_split($valor, 3);
+            $Categorias = DB::table('categories')->where('subcategoria','LIKE','%'.$productCat[0].'%')->get();
+            if($Categorias){
+                foreach($Categorias as $category){
+                    $final .= ($category->categoria).',';
+                }
+            }
+        }
 
         if($final == '')
             return('000');

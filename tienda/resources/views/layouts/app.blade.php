@@ -32,12 +32,11 @@
                             <div class="col-md-6 mb-4">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <input id="search" type="Text" class="form-control" name="search" placeholder="Buscar" autocomplete="off" required>
-
-                                @if ($errors->has('search'))
+@if ($errors->has('search'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('search') }}</strong>
                                     </span>
-                                @endif
+@endif
                             </div>
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -45,11 +44,11 @@
                     </form>
                     <ul class="nav navbar-nav navbar-left">
                         <!-- Authentication Links -->
-                        @guest
+@guest
                             <li><a href="">¡Bienvenido!</a></li>
                         {{--<li><a href="{{ route('login') }}">Inicia sesion</a></li>
                             <li><a href="{{ route('register') }}">Registrate</a></li>--}}
-                        @else
+@else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     ¡Bienvenido {{ strtok((Auth::user()->name), ' ')  }}! <span class="caret"></span>
@@ -59,11 +58,11 @@
                                     <li>
                                         <a href="/Users/{{ Auth::user()->id }}">Mi perfil</a>
                                     </li>
-                                    @if(Auth::user()->type=='admin')
+@if(Auth::user()->type=='admin')
                                     <li>
                                         <a class="nav-link text-light" href="/admin">Administrar</a>
                                     </li>
-                                    @endif
+@endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -77,7 +76,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+@endguest
                     </ul>
                 </div>
                 <div class="navbar-header">
@@ -93,36 +92,36 @@
                 <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        @php( $category = \App\categories::all())
-                        @foreach($category as $categoria)
-                        @if($categoria->categoria != 000 && ($categoria->categoria == '100'||$categoria->categoria % 100 == 0))
-                        @php($actual = $categoria->categoria)
+@php( $category = \App\categories::all())
+@foreach($category as $categoria)
+@if($categoria->categoria != 000 && ($categoria->categoria == '100'||$categoria->categoria % 100 == 0))
+@php($actual = $categoria->categoria)
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                 {{ucwords(mb_strtolower($categoria->titulo))}}<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                @foreach($category as $categoria)
-                                @if(($categoria->categoria > $actual) && ($categoria->categoria < $actual+100))
+@foreach($category as $categoria)
+@if(($categoria->categoria > $actual) && ($categoria->categoria < $actual+100))
                                 <li><a href="/category/{{$categoria->categoria}}">{{$categoria->titulo}}</a></li>
-                                @endif
-                                @endforeach
+@endif
+@endforeach
                             </ul>
                         </li>
-                        @elseif($categoria->categoria == 000)
+@elseif($categoria->categoria == 000)
                         <li class="">
                             <a href="/category/{{$categoria->categoria}}">
                                 {{ucwords(strtolower($categoria->titulo))}}
                             </a>
                         </li>
-                        @endif
-                        @endforeach
+@endif
+@endforeach
                     </ul>
                 </div>
             </div>
             
         </nav>
-        @yield('content')
+@yield('content')
         <!-- Footer -->
         <footer class="text-center text-lg-start bg-light text-muted">
                     

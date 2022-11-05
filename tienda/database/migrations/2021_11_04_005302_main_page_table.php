@@ -14,8 +14,8 @@ class MainPageTable extends Migration
     public function up()
     {
         Schema::create('main_Pages', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('file');
-            $table->string('file1');
             $table->timestamps();
         });
     }

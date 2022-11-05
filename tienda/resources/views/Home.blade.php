@@ -15,31 +15,28 @@
                         <div id="myCarousel" class="carousel slide" data-ride="carousel" style="text-aling: center;">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
-                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                              <li data-target="#myCarousel" data-slide-to="1"></li>
+                                @foreach($bannerImages as $banner)
+                                    <li data-target="#myCarousel" data-slide-to="{{$loop->index}}"></li>
+                                @endforeach
                             </ol>
                           
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <div class="text-center">
-                                        @if($bannerImages[0]->file)
-                                        <img src="{{asset($bannerImages[0]->file)}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
-                                        @else
-                                        <img src="{{$defaultImage}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
-                                        @endif
+                                @foreach($bannerImages as $banner)
+                                    @if($loop->index == 0)
+                                    <div class="item active">
+                                    @else
+                                    <div class="item">
+                                    @endif
+                                        <div class="text-center">
+                                            @if($banner->file != '')
+                                            <img src="{{asset($banner->file)}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
+                                            @else
+                                            <img src="{{$defaultImage}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
-                          
-                                <div class="item">
-                                    <div class="text-center">
-                                        @if($bannerImages[0]->file)
-                                        <img src="{{asset($bannerImages[0]->file1)}}" width="100%" class="img-fluid" alt="Error al cargar imagen">
-                                        @else
-                                        <img src="{{$defaultImage}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
-                                        @endif
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                           
                             <!-- Left and right controls -->

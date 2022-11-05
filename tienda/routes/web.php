@@ -34,8 +34,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/product', 'ProductsController@viewProducts');
 Route::get('/product/{brand}', 'ProductsController@viewProduct');
 
-Route::get('/product/category/{category}', 'ProductsController@viewCategory');
-Route::get('/category/{category}', 'ProductsController@viewCategory');
+Route::get('/product/category/{category}', 'categoryController@viewCategory');
+Route::get('/category/{category}', 'categoryController@viewCategory');
 Route::get('/search', 'ProductsController@Search');
 
 /* Pagina de usuarios */
@@ -61,12 +61,13 @@ Route::get('/admin', 'AdminController@viewAdmin')/*->middleware('auth')*/;
 Route::get('/admin/{id}', 'AdminController@upgrade')/*->middleware('auth')*/;
 //Importar imagenes para pagina principal
 Route::get('/custom', 'AdminController@viewCustom')/*->middleware('auth')*/;
+Route::get('/custom/delete/{id}', 'AdminController@customDelete')/*->middleware('auth')*/;
 Route::any('/loadImages', 'AdminController@loadImages')/*->middleware('auth')*/;
 
 /* Paginas de importar lista de categorias de CSV */
 Route::get('/categories/import', 'ImportController@viewCatImport')/*->middleware('auth')*/;
-Route::get('/categories/image/{categoria}', 'ProductsController@viewCatImage')/*->middleware('auth')*/;
-Route::any('/catEdit/{id}', 'ProductsController@catEdit');
+Route::get('/categories/image/{categoria}', 'categoryController@viewCatImage')/*->middleware('auth')*/;
+Route::any('/catEdit/{id}', 'categoryController@catEdit');
 Route::any('/catImport', 'ImportController@catImport')/*->middleware('auth')*/;
 Route::get('/catImport/done', function(){
     set_time_limit(7200);

@@ -18,16 +18,16 @@
                             <div class="card-body">
                             <h2 class="card-title">{{ $Product->description }}</h2>
                             <h4 class="card-text">{{ $Product->brand }}</h4>
-                            {{--
                             @if(strpos($Product->category,','))
                             @php($categorias = explode(',',$Product->category))
                             @foreach($categorias as $categoria)
-                            <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
+                            @php($categoriaFinal = DB::table('categories')->where('categoria','=',$categoria)->get())
+                            <a href="/category/{{ $categoria }}" class="card-text">{{ $categoriaFinal[0]->titulo }}</a><br>
                             @endforeach
                             @else
-                            <a href="/category/{{ $Product->category }}" class="card-text">{{ $Product->category }}</a><br>
+                            @php($categoriaFinal = DB::table('categories')->where('categoria','=',$Product->category)->get())
+                            <a href="/category/{{ $Product->category }}" class="card-text">{{ $categoriaFinal[0]->titulo }}</a><br>
                             @endif
-                            --}}
                             <a href="https://m.me/Dicesa1?ref=Precios" target="_blank" class="btn btn-primary">
                                 Contactanos por messenger
                             </a>

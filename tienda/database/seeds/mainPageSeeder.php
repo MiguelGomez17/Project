@@ -14,7 +14,6 @@ class mainPageSeeder extends Seeder
     {
         $mainPage = new mainPage();
         $mainPage->file='';
-        $mainPage->file1='';
         $mainPage->save();
     }
 }

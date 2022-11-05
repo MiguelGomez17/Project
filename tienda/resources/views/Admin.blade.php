@@ -34,6 +34,7 @@
                                                         <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">#</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">Nombre</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">Clave</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">Existencias</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending">Categoria</th>
                                                     </tr>
                                                 </thead>
@@ -43,11 +44,12 @@
                                                         <th scope="row">{{$Product->id}}</th>
                                                         <td><a href="/product/{{ $Product->id }}">{{$Product->description}}</a> </td>
                                                         <td>{{$Product->brand}}</td>
+                                                        <td>{{$Product->inventory}}</td>
                                                         @if(strpos($Product->category,','))
                                                         @php($categorias = explode(',',$Product->category))
                                                         <td>
                                                         @foreach($categorias as $categoria)
-                                                        <a href="/category/{{$categoria}}">{{$categoria}}</a><br>
+                                                        <a href="/category/{{$categoria}}">{{$categoria}}</a>, 
                                                         @endforeach
                                                         </td>
                                                         @else

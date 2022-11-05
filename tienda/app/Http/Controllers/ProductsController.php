@@ -25,8 +25,8 @@ class ProductsController extends Controller
     }
     public function viewProducts()
     {
-        //$Products = DB::table('products')->where('image','=', 'images/sample/productSample.png')->where('inventory','>', '0')->paginate(25);
-        $Products = DB::table('products')->where('inventory','>', '0')->paginate(25);
+        $Products = DB::table('products')->where('image','=', 'images/sample/productSample.png')->where('inventory','>', '0')->paginate(25);
+        //$Products = DB::table('products')->where('inventory','>', '0')->paginate(25);
         $Categorias = categories::all();
         if($Products){
             return view('Products',['products'=>$Products, 'Categorias'=>$Categorias]);
@@ -34,28 +34,14 @@ class ProductsController extends Controller
             return redirect()->route('home');
         }
     }
-    public function viewCategory($category)
-    {
-        $categoria = categories::where('categoria', $category)->first();
-        if($categoria)
-        {
-            $Products = Product::where('category', 'LIKE', '%'.$category.'%')->where('inventory','>','0')->paginate(1000);
-            if($Products){
-                $title = 'DICES@ | '.$categoria->titulo;
-                return view('Category',['products'=>$Products,'categoria'=>$categoria], compact('title'));
-            }
-        }
-        return redirect()->route('home');
-
-    }
 
     public function Search(Request $request){
         $texto=trim($request->get('search'));
         $resultado = DB::table('products')
-                ->where('description','LIKE','%'.$texto.'%')
                 ->where('inventory','>','0')
+                ->where('description','LIKE','%'.$texto.'%')
                 ->orwhere('brand','LIKE','%'.$texto.'%')
-                ->paginate(1000);
+                ->get();
         $title = 'DICES@ | '.$texto;
         return view('Search',['resultados'=>$resultado, 'Busqueda'=>$texto], compact('title'));
     }
@@ -136,20 +122,6 @@ class ProductsController extends Controller
         return redirect('home');
     }
 
-    public function viewCatImage($id)
-    {
-        if(Auth::user()){
-            if(Auth::user()->type=='admin'){
-                $categoria = categories::find($id);
-                if($categoria){
-                    $title = 'DICES@ | Imagen para '.$categoria->titulo;
-                    return view('CategoryImage',['categoria'=>$categoria],compact('title'));
-                }
-            }
-        }
-        return redirect('home');
-    }
-
     /* Vistas para editar producto */
     public function viewEdit($id)
     {
@@ -200,27 +172,5 @@ class ProductsController extends Controller
         $product->category = $data['category'];
         $product->save();
         return redirect('product/'.$id);
-    }
-
-    public function catEdit(Request $request, $id)
-    {
-        $validateData = $request->validate([
-            'image' => 'nullable|sometimes|max:10000'
-        ]);
-        $data = request()->all();
-        $category = categories::find($id);
-        
-        if(isset($data['image']))
-        {
-            $file = $data['image'];
-            $finalPath = 'images/category/';
-            $fileName = $category['categoria'].'.png';
-            $uploadSuccess=$data['image']->move($finalPath,$fileName);
-            $category->image = ($finalPath.$fileName);
-        }else{
-            $category->image = 'images/sample/categorySample.png';
-        }
-        $category->save();
-        return redirect('category/'.$category->categoria);
     }
 }
