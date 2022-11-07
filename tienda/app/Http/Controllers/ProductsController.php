@@ -25,8 +25,11 @@ class ProductsController extends Controller
     }
     public function viewProducts()
     {
-        $Products = DB::table('products')->where('image','=', 'images/sample/productSample.png')->where('inventory','>', '0')->paginate(25);
-        //$Products = DB::table('products')->where('inventory','>', '0')->paginate(25);
+        $Products = DB::table('products')
+            ->where('image','=', 'images/sample/productSample.png')
+            ->where('category','=', '000')
+            ->where('inventory','>', '0')
+            ->paginate(25);
         $Categorias = categories::all();
         if($Products){
             return view('Products',['products'=>$Products, 'Categorias'=>$Categorias]);
@@ -37,13 +40,16 @@ class ProductsController extends Controller
 
     public function Search(Request $request){
         $texto=trim($request->get('search'));
+        $categorias = DB::table('categories')
+            ->where('titulo','LIKE','%'.$texto.'%')
+            ->get();
         $resultado = DB::table('products')
-                ->where('inventory','>','0')
-                ->where('description','LIKE','%'.$texto.'%')
-                ->orwhere('brand','LIKE','%'.$texto.'%')
-                ->get();
+            ->where('inventory','>','0')
+            ->where('description','LIKE','%'.$texto.'%')
+            ->orwhere('brand','LIKE','%'.$texto.'%')
+            ->get();
         $title = 'DICES@ | '.$texto;
-        return view('Search',['resultados'=>$resultado, 'Busqueda'=>$texto], compact('title'));
+        return view('Search',['resultados'=>$resultado,'categorias'=>$categorias, 'Busqueda'=>$texto], compact('title'));
     }
 
     

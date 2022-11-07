@@ -74,7 +74,7 @@ class AdminController extends Controller
                 $file = $request->file('file');
                 $file1 = $request->file('file1');
                 $finalPath = 'images/homepage/';
-                $fileName = 'BANNER'.time();
+                $fileName = 'BANNER'.time().'.png';
                 $uploadSuccess=$request->file('file')->move($finalPath,$fileName);
                 $mainPage = new mainPage;
                 $mainPage->file=($finalPath.$fileName);

@@ -8,9 +8,21 @@
                 <div class="panel-heading">Resultados para <i>"{{ $Busqueda }}"</i></div>
                 <div class="panel-body">
                     <div class="container" style="width: 95%">
+                        <div class="container">
                         @if(count($resultados)<=0)
-                        <h5 class="card-title">No se encontraron resultados</h5>
-                        @else
+                            <h5 class="card-title">No se encontraron resultados</h5>
+                            @else
+                                @if($categorias)
+                                <h4>Puede encontrar mas resultados en:</h4>
+                                @foreach($categorias as $categoria)
+                                @if(!strpos($categoria->categoria, '00'))
+                                <a href="/category/{{$categoria->categoria}}">
+                                    <p>{{ $categoria->titulo }}</p>
+                                </a>
+                                @endif
+                                @endforeach
+                                @endif
+                        </div>
                             @foreach ($resultados as $product)
                                 @if($product->inventory > 0)
                                     <div class="container">

@@ -17,6 +17,11 @@ class categoryController extends Controller
         $categoria = categories::where('categoria', $category)->first();
         if($categoria)
         {
+            if($categoria->categoria != 000 && ($category == '100'||$category % 100 == 0))
+            {
+                return redirect()->route('home');
+            }else{
+            }
             $Products = Product::where('category', 'LIKE', '%'.$category.'%')->where('inventory','>','0')->paginate(10);
             if($Products){
                 $title = 'DICES@ | '.$categoria->titulo;
