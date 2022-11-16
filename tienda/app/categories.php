@@ -28,11 +28,16 @@ class categories extends Model
                     }else{
                         $imagen='images/category/categorySample.png';
                     }
+                    $categorias = array_slice($row,2);
+                    $categoria = '';
+                    foreach($categorias as $cat){
+                        $categoria .= $cat.',';
+                    }
                     self::updateorCreate([
                         'id'=>$index
                     ],[
                         'categoria'=>$row[0],
-                        'subcategoria'=>Helper::categoria($row[2],$row[3],$row[4],$row[5]),
+                        'subcategoria'=>$categoria,
                         'titulo'=>utf8_encode($row[1]),
                         'image'=>$imagen
                     ]);
@@ -41,7 +46,7 @@ class categories extends Model
             $categories = new categories;
             $categories->categoria = '000';
             $categories->subcategoria = 'NAN';
-            $categories->titulo = 'Sin categoria';
+            $categories->titulo = 'Otros';
             $categories->image = 'images/category/categorySample.png';
             $categories->save();
         }

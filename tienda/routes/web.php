@@ -84,9 +84,6 @@ Route::get('/import/done', function(){
     return redirect("/admin");
 });
 
-Route::get('/debug/{data}', function(){
-    return $data;
-});
 
 /* Paginas de creacion de productos */
 Route::get('/products/create', 'ProductsController@viewCreate');
@@ -105,6 +102,6 @@ Route::get('/mail', function(){
 });
 
 //Auth::routes();
-Route::prefix('19216801/')->group(function(){
+Route::prefix('Gn2RM01hdT10CbhasDL/')->group(function(){
     Auth::routes();
 });

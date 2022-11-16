@@ -27,11 +27,11 @@
                                     <div class="card mb-3" style="max-width: 800px;">
                                         <div class="row g-0">
                                             <div class="col-md-4 text-center">
-                                                <a href="/product/{{ $product->id }}"><img src="{{ asset($product->image) }}" alt="{{ $product->brand }}" style="max-width: 20rem; max-height: 20rem;"></a>
+                                                <a href="/product/{{ $product->brand }}"><img src="{{ asset($product->image) }}" alt="{{ $product->brand }}" style="max-width: 20rem; max-height: 22rem;"></a>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <a href="/product/{{ $product->id }}"><h2 class="card-title">{{ $product->description }}</h2></a>
+                                                    <a href="/product/{{ $product->brand }}"><h2 class="card-title">{{ $product->description }}</h2></a>
                                                     <h4 class="card-text">{{ $product->brand }}</h4>
                                                     @if(strpos($product->category,','))
                                                         @php($categorias = explode(',',$product->category))
@@ -45,8 +45,8 @@
                                                     @endif
                                                     @if (Auth::user())
                                                         @if (Auth::user()->type=='admin')
-                                                            <a href="/product/delete/{{ $product->id }}" class="btn btn-danger">Eliminar</a>
-                                                            <a href="/product/edit/{{ $product->id }}" class="btn btn-success">Editar</a>
+                                                            <a href="/product/delete/{{ $product->brand }}" class="btn btn-danger">Eliminar</a>
+                                                            <a href="/product/edit/{{ $product->brand }}" class="btn btn-success">Editar</a>
                                                         @endif
                                                     @endif
                                                 </div>

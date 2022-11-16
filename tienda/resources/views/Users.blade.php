@@ -28,7 +28,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                            <a href="/product/{{ $product->id }}" class="card-title"><h2>{{ $product->description }}</h2></a>
+                                            <a href="/product/{{ $Product->brand }}" class="card-title"><h2>{{ $product->description }}</h2></a>
                                             <h3 class="card-text">Cantidad: {{ $pedido->cantidad }}</h3>
                                             @if(($pedido->comprado))
                                             <h3 class="card-text">Fecha de compra: {{ $pedido->fechaCompra }}</h3>

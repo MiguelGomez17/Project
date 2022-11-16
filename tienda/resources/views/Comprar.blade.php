@@ -24,7 +24,7 @@
                         </div>
                         <h4>Complete la siguiente informacion para agregar al carrito</h4>
                         <div class="container">
-                            <form class="form-horizontal" autocomplete="off" method="POST" action="/processbuy/{{$Product->id}}">
+                            <form class="form-horizontal" autocomplete="off" method="POST" action="/processbuy/{{$Product->brand}}">
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-md-2 control-label">Nombre completo</label>

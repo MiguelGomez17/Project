@@ -13,7 +13,7 @@
                         <div class="container">
                         <div class="item">
                             <div class="text-center">
-                                <a href="/product/{{ $Product->id }}"><img src="{{ asset($Product->image) }}" alt="{{ $Product->brand }}" style="max-width: 18rem;"></a>
+                                <a href="/product/{{ $Product->brand }}"><img src="{{ asset($Product->image) }}" alt="{{ $Product->brand }}" style="max-width: 18rem;"></a>
                             </div>
                         </div>
                         <div class="text-center">

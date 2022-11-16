@@ -39,24 +39,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($Products as $Product)
+@foreach ($Products as $Product)
                                                     <tr>
                                                         <th scope="row">{{$Product->id}}</th>
-                                                        <td><a href="/product/{{ $Product->id }}">{{$Product->description}}</a> </td>
+                                                        <td><a href="/product/{{ $Product->brand }}">{{$Product->description}}</a> </td>
                                                         <td>{{$Product->brand}}</td>
                                                         <td>{{$Product->inventory}}</td>
-                                                        @if(strpos($Product->category,','))
-                                                        @php($categorias = explode(',',$Product->category))
+@if(strpos($Product->category,','))
+@php($categorias = explode(',',$Product->category))
                                                         <td>
-                                                        @foreach($categorias as $categoria)
+@foreach($categorias as $categoria)
                                                         <a href="/category/{{$categoria}}">{{$categoria}}</a>, 
-                                                        @endforeach
+@endforeach
                                                         </td>
-                                                        @else
+@else
                                                         <td><a href="/category/{{$Product->category}}">{{$Product->category}}</a></td>
-                                                        @endif
+@endif
                                                     </tr>
-                                                    @endforeach
+@endforeach
                                             </table>
                                         </div>
                                     </div>
@@ -75,19 +75,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Users as $User)
+@foreach ($Users as $User)
                                     <tr>
                                         <th scope="row">{{$User->id}}</th>
                                         <td><a href="/Users/{{ $User->id }}">{{$User->name}}</a> </td>
                                         <td>{{$User->email}}</td>
                                         <td>{{$User->type}}</td>
-                                        @if($User->id==Auth::User()->id)
+@if($User->id==Auth::User()->id)
                                             <td>No puedes cambiar tu propio rango </td>
-                                        @else
+@else
                                             <td><a href="/admin/{{ $User->id }}">Cambiar rango</a> </td>
-                                        @endif
+@endif
                                     </tr>
-                                @endforeach
+@endforeach
                             </tbody>
                         </table>
                         {{ $Users->links() }}

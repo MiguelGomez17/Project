@@ -22,10 +22,10 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $Product->description }}</h5>
                                             <h3 class="card-text">{{ $Product->brand }}</h3>
-                                            <a href="/product/" class="btn btn-primary">No, mantener</a>
+                                            <a href="/product/{{{{ $Product->brand }}}}" class="btn btn-primary">No, mantener</a>
                                             @if(Auth::user())
                                                 @if(Auth::user()->type=='admin')
-                                                    <a href="/delete/{{ $Product->id }}" class="btn btn-danger">Si, eliminar</a>
+                                                    <a href="/delete/{{ $Product->brand }}" class="btn btn-danger">Si, eliminar</a>
                                                 @endif
                                             @endif
                                         </div>

@@ -21,11 +21,29 @@ class categoryController extends Controller
             {
                 return redirect()->route('home');
             }else{
-            }
-            $Products = Product::where('category', 'LIKE', '%'.$category.'%')->where('inventory','>','0')->paginate(10);
-            if($Products){
-                $title = 'DICES@ | '.$categoria->titulo;
-                return view('Category',['products'=>$Products,'categoria'=>$categoria], compact('title'));
+                $Products = Product::where('category', 'LIKE', '%'.$category.'%')->where('inventory','>','0')->paginate(10);
+                if($Products){
+                    $check = '';
+                    foreach($Products as $i=>$Product){
+                        if($Product->category != $category){
+                            if(strpos($Product->category,',')){
+                                $categorias = explode(',',$Product->category);
+                                foreach($categorias as $categoriaL){
+                                    if($categoriaL == $category){
+                                        $check .= $category;
+                                    }
+                                }
+                                if($check == ''){
+                                    unset($Products[$i]);
+                                }
+                            }else{
+                                unset($Products[$i]);
+                            }
+                        }
+                    }
+                    $title = 'DICES@ | '.$categoria->titulo;
+                    return view('Category',['products'=>$Products,'categoria'=>$categoria], compact('title'));
+                }
             }
         }
         return redirect()->route('home');

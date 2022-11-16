@@ -14,7 +14,7 @@ class ProductsController extends Controller
     /* Vistas de producto, lista de productos y categorias */
     public function viewProduct($brand)
     {
-        $Product = Product::find($brand);
+        $Product = DB::table('products')->where('brand','=',$brand)->first();
         if($Product){
             if(($Product->inventory>0)||(Auth::user()&&Auth::user()->type=='admin')){
                 $title = 'DICES@ | '.$Product->description;
@@ -27,7 +27,7 @@ class ProductsController extends Controller
     {
         $Products = DB::table('products')
             ->where('image','=', 'images/sample/productSample.png')
-            ->where('category','=', '000')
+            //->where('category','=', '000')
             ->where('inventory','>', '0')
             ->paginate(25);
         $Categorias = categories::all();
@@ -102,11 +102,11 @@ class ProductsController extends Controller
 
 
     /* Vistas para eliminar producto */
-    public function viewDelete($id)
+    public function viewDelete($brand)
     {
         if(Auth::user()){
             if(Auth::user()->type==='admin'){
-                $Product = Product::find($id);
+                $Product = DB::table('products')->where('brand','=',$brand)->first();
                 if($Product){
                     $title = 'DICES@ | Eliminar '.$Product->brand;
                     return view('Delete',['Product'=>$Product], compact('title'));
@@ -116,11 +116,11 @@ class ProductsController extends Controller
         return redirect()->route('home');
     }
 
-    public function Delete($id)
+    public function Delete($brand)
     {
         if(Auth::user()){
             if(Auth::user()->type==='admin'){
-                $Product = Product::find($id);
+                $Product = DB::table('products')->where('brand','=',$brand)->first();
                 $Product->delete();
                 return redirect('home');
             }
@@ -129,11 +129,11 @@ class ProductsController extends Controller
     }
 
     /* Vistas para editar producto */
-    public function viewEdit($id)
+    public function viewEdit($brand)
     {
         if(Auth::user()){
             if(Auth::user()->type==='admin'){
-                $Product = Product::find($id);
+                $Product = DB::table('products')->where('brand','=',$brand)->first();
                 if($Product){
                     $title = 'DICES@ | Editar '.$Product->brand;
                     return view('EditProduct',['Product'=>$Product],compact('title'));
@@ -166,10 +166,11 @@ class ProductsController extends Controller
             $fileName = $data['brand'].'.png';
             $uploadSuccess=$data['image']->move($finalPath,$fileName);
             $product->image = ($finalPath.$fileName);
-        }elseif (file_exists('images/products/'.$data['brand'].'.png'))
+        }
+        elseif (file_exists('images/products/'.$data['brand'].'.png'))
         {
             $product->image = 'images/products/'.$data['brand'].'.png';
-        }        
+        }
         else{
             $product->image = 'images/sample/productSample.png';
         }
@@ -177,6 +178,6 @@ class ProductsController extends Controller
         $product->inventory = $data['inventory'];
         $product->category = $data['category'];
         $product->save();
-        return redirect('product/'.$id);
+        return redirect('product/'.$product->brand);
     }
 }
