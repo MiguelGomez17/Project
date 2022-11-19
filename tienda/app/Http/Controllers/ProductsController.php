@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\product;
 use App\categories;
 use Auth;
+use Helper;
 
 class ProductsController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductsController extends Controller
     {
         $Product = DB::table('products')->where('brand','=',$brand)->first();
         if($Product){
-            if(($Product->inventory>0)||(Auth::user()&&Auth::user()->type=='admin')){
+            if(($Product->inventory>0)||(Helper::admin())){
                 $title = 'DICES@ | '.$Product->description;
                 return view('Product',['Product'=>$Product], compact('title'));
             }
@@ -56,12 +57,8 @@ class ProductsController extends Controller
     /* Vistas de agregar producto */
     public function viewCreate()
     {
-        if(Auth::user()){
-            if(Auth::user()->type=='admin'){
-                return view('CreateProduct');
-            }else{
-                return redirect()->route('home');
-            }
+        if(Helper::admin()){
+            return view('CreateProduct');
         }else{
             return redirect()->route('home');
         }
@@ -104,13 +101,11 @@ class ProductsController extends Controller
     /* Vistas para eliminar producto */
     public function viewDelete($brand)
     {
-        if(Auth::user()){
-            if(Auth::user()->type==='admin'){
-                $Product = DB::table('products')->where('brand','=',$brand)->first();
-                if($Product){
-                    $title = 'DICES@ | Eliminar '.$Product->brand;
-                    return view('Delete',['Product'=>$Product], compact('title'));
-                }
+        if(Helper::admin()){
+            $Product = DB::table('products')->where('brand','=',$brand)->first();
+            if($Product){
+                $title = 'DICES@ | Eliminar '.$Product->brand;
+                return view('Delete',['Product'=>$Product], compact('title'));
             }
         }
         return redirect()->route('home');
@@ -118,12 +113,10 @@ class ProductsController extends Controller
 
     public function Delete($brand)
     {
-        if(Auth::user()){
-            if(Auth::user()->type==='admin'){
-                $Product = DB::table('products')->where('brand','=',$brand)->first();
-                $Product->delete();
-                return redirect('home');
-            }
+        if(Helper::admin()){
+            $Product = DB::table('products')->where('brand','=',$brand)->first();
+            $Product->delete();
+            return redirect('home');
         }
         return redirect('home');
     }
@@ -131,13 +124,11 @@ class ProductsController extends Controller
     /* Vistas para editar producto */
     public function viewEdit($brand)
     {
-        if(Auth::user()){
-            if(Auth::user()->type==='admin'){
-                $Product = DB::table('products')->where('brand','=',$brand)->first();
-                if($Product){
-                    $title = 'DICES@ | Editar '.$Product->brand;
-                    return view('EditProduct',['Product'=>$Product],compact('title'));
-                }
+        if(Helper::admin()){
+            $Product = DB::table('products')->where('brand','=',$brand)->first();
+            if($Product){
+                $title = 'DICES@ | Editar '.$Product->brand;
+                return view('EditProduct',['Product'=>$Product],compact('title'));
             }
         }
         return redirect()->route('home');

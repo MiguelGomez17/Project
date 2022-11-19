@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                 </div>
-@if($Product->inventory>0||(Auth::user()&&Auth::user()->type=='admin'))
+@if($Product->inventory>0||Helper::admin())
                 <div class="container">
                     <div class="card mb-3" style="max-width: 75%;">
                         <div class="row g-0">
@@ -42,16 +42,13 @@
                             <a href="https://api.whatsapp.com/send?phone=" target="_blank" class="btn btn-success">
                                 Contactanos por WhatsApp
                             </a>
-@if(Auth::user())
-@if(Auth::user()->type=='admin')
+@if(Helper::admin())
                                     <br>
                                     <h4>
                                         Opciones de administrador
                                     </h4>
                                     <a href="/product/edit/{{ $Product->brand }}" class="btn btn-success">Editar producto</a>
                                     <a href="/product/delete/{{ $Product->brand }}" class="btn btn-danger">Eliminar producto</a>
-@endif
-@endif
                             </div>
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;

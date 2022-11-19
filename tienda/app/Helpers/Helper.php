@@ -3,6 +3,7 @@
 namespace App\Helpers;
 use App\categories;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class Helper
 {
@@ -31,5 +32,15 @@ class Helper
             return('000');
         else
             return(rtrim($final,','));
+    }
+
+    public static function admin(){
+        if(Auth::user())
+        {
+            if(Auth::user()->type == 'admin'){
+                return true;
+            }
+        }
+        return false;
     }
 }

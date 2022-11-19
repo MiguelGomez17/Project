@@ -59,6 +59,7 @@ Route::get('/about', 'HomeController@viewAbout');
 /* Paginas de administrador */
 Route::get('/admin', 'AdminController@viewAdmin')/*->middleware('auth')*/;
 Route::get('/admin/{id}', 'AdminController@upgrade')/*->middleware('auth')*/;
+Route::any('/registrar', 'AdminController@registrar');
 //Importar imagenes para pagina principal
 Route::get('/custom', 'AdminController@viewCustom')/*->middleware('auth')*/;
 Route::get('/custom/delete/{id}', 'AdminController@customDelete')/*->middleware('auth')*/;

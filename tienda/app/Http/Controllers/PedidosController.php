@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Pedido;
 use App\product;
+use Helper;
 
 class PedidosController extends Controller
 {

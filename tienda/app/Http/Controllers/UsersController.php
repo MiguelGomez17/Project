@@ -7,13 +7,14 @@ use Auth;
 use App\User;
 use App\Pedido;
 use App\product;
+use Helper;
 
 class UsersController extends Controller
 {
     public function viewUsers($id)
     {
         if(Auth::user()){
-            if(Auth::user()->id==$id||Auth::user()->type==='admin'){
+            if(Auth::user()->id==$id||Helper::admin()){
                 $User = User::find($id);
                 $Pedidos = Pedido::where('userid', $id)->paginate(10);
                 $Productos = product::all();

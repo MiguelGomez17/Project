@@ -4,8 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @if(Auth::user())
-                @if(Auth::user()->type=='admin')
+            @if(Helper::admin())
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4>Editar producto {{$Product->brand}}</h4>
@@ -89,26 +88,13 @@
                                     <div class="col-md-8 col-md-offset-2">
                                         <button type="submit" class="btn btn-primary">
                                             Guardar
-                                        </button>
-                                    </div>
+                                    </button>
                                 </div>
-                            </form>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div>
-                @else
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Acceso denegado
-                    </div>
-                    <div class="panel-body">
-                        <div class="alert alert-danger">
-                            No tienes autorizacion para ver esta pagina.
-                            <?=redirect()->route('home');?> 
-                        </div>
+                            </div>
+                        </form>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
-                @endif
             @else
                 <div class="panel panel-default">
                     <div class="panel-heading">

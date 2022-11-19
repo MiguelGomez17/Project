@@ -23,7 +23,7 @@ class product extends Model
             set_time_limit(7200);
             foreach($data as $index => $row){
                 if($row[0]){
-                    if(substr($row[3], -1)!="X" && strtok($row[1],' ') != "SERVICIO")
+                    if(substr($row[3], -1)!="X" && strtok($row[1],' ') != "SERVICIO" && $row[0] != 'GEN')
                     {
                         if (file_exists('images/products/'.$row[0].'.png')) {
                             $imagen='images/products/'.$row[0].'.png';

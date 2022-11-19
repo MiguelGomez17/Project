@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @if (Auth::user()->type==='admin'||Auth::user()->id===$Usuario['id'])
+            @if (Helper::admin()||Auth::user()->id===$Usuario['id'])
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <?= e($Usuario['name']) ?>
@@ -14,7 +14,7 @@
                             Administrador
                         </div>
                     @endif
-                    @if (Auth::user()->id===$Usuario['id']||Auth::user()->type==='admin')
+                    @if (Auth::user()->id===$Usuario['id']||Helper::admin())
                         <div class="panel-body">
                             <h1>Lista de compra</h1>
                             {{--

@@ -60,7 +60,7 @@
                                             <div class="card-body">
                                                 <a href="/product/{{ $product->brand }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
+                                                    <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
                                                 </div>
                                                 {{--
                                                 @if(strpos($product->category,','))
@@ -92,7 +92,7 @@
                                             <div class="card-body">
                                                 <a href="/product/{{ $product->brand }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
+                                                <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
                                                 </div>
                                                 {{--
                                                 @if(strpos($product->category,','))
@@ -124,7 +124,7 @@
                                             <div class="card-body border-dark">
                                                 <a href="/product/{{ $product->brand }}"><h5 class="card-title">{{ $product->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: 18rem;"></a>
+                                                <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
                                                 </div>
                                                 {{--
                                                 @if(strpos($product->category,','))

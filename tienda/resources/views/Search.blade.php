@@ -45,11 +45,9 @@
                                                             @php($categoriaFinal = DB::table('categories')->where('categoria','=',$product->category)->get())
                                                             <a href="/category/{{ $product->category }}" class="card-text">{{ $categoriaFinal[0]->titulo }}</a><br>
                                                         @endif
-                                                        @if (Auth::user())
-                                                            @if (Auth::user()->type=='admin')
-                                                                <a href="/product/delete/{{ $product->brand }}" class="btn btn-danger">Eliminar</a>
-                                                                <a href="/product/edit/{{ $product->brand }}" class="btn btn-success">Editar</a>
-                                                            @endif
+                                                        @if(Helper::admin())
+                                                            <a href="/product/delete/{{ $product->brand }}" class="btn btn-danger">Eliminar</a>
+                                                            <a href="/product/edit/{{ $product->brand }}" class="btn btn-success">Editar</a>
                                                         @endif
                                                     </div>
                                                 </div>

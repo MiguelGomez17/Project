@@ -8,16 +8,20 @@
                 <div class="panel-heading"><?= e($categoria->titulo)?></div>
                 <div class="panel-body">
                     <div class="container" style="width: 95%">
-                        @if(asset($categoria->image))
+                        @if($categoria->image != 'images/category/categorySample.png' && asset($categoria->image))
                             <div class="item">
                                 <div class="text-center">
                                     <img src="{{ asset($categoria->image) }}" class="img-fluid" width="80%" alt="Error al cargar imagen">
-                                    @if (Auth::user())
-                                    @if (Auth::user()->type=='admin')
+                                    @if(Helper::admin())
                                     <br>
                                     <a href="/categories/image/{{$categoria->id}}" class="btn btn-success">Cambiar imagen</a>
                                     @endif
-                                    @endif
+                                </div>
+                            </div>
+                        @elseif(Helper::admin())
+                            <div class="item">
+                                <div class="text-center">
+                                <a href="/categories/image/{{$categoria->id}}" class="btn btn-success">Agregar imagen</a>   
                                 </div>
                             </div>
                         @endif
@@ -43,11 +47,9 @@
                                                         @php($categoriaFinal = DB::table('categories')->where('categoria','=',$product->category)->get())
                                                         <a href="/category/{{ $product->category }}" class="card-text">{{ $categoriaFinal[0]->titulo }}</a><br>
                                                     @endif
-                                                    @if (Auth::user())
-                                                        @if (Auth::user()->type=='admin')
-                                                            <a href="/product/delete/{{ $product->brand }}" class="btn btn-danger">Eliminar</a>
-                                                            <a href="/product/edit/{{ $product->brand }}" class="btn btn-success">Editar</a>
-                                                        @endif
+                                                    @if (Helper::admin())
+                                                        <a href="/product/delete/{{ $product->brand }}" class="btn btn-danger">Eliminar</a>
+                                                        <a href="/product/edit/{{ $product->brand }}" class="btn btn-success">Editar</a>
                                                     @endif
                                                 </div>
                                             </div>

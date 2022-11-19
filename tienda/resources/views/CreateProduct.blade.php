@@ -4,8 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @if(Auth::user())
-                @if(Auth::user()->type=='admin')
+            @if(Helper::admin())
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4>Agregar producto</h4>
@@ -16,7 +15,7 @@
                                 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                     <label for="description" class="col-md-2 control-label">Descripcion</label>
                                     <div class="col-md-8">
-                                        <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="Ejemplo: Memoria RAM 1GB, Almacenmaiento: 8GB" autofocus autocomplete="off">
+                                        <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="" autofocus autocomplete="off">
                                         @if ($errors->has('description'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('description') }}</strong>
@@ -27,7 +26,7 @@
                                 <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
                                     <label for="price" class="col-md-2 control-label">Precio</label>
                                     <div class="col-md-8">
-                                        <input id="price" type="number" class="form-control" name="price" value="{{ old('price') }}" placeholder="Ejemplo: 1500" autofocus autocomplete="off">
+                                        <input id="price" type="number" class="form-control" name="price" value="{{ old('price') }}" placeholder="" autofocus autocomplete="off">
                                         @if ($errors->has('price'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('price') }}</strong>
@@ -38,7 +37,7 @@
                                 <div class="form-group{{ $errors->has('brand') ? ' has-error' : '' }}">
                                     <label for="brand" class="col-md-2 control-label">Clave</label>
                                     <div class="col-md-8">
-                                        <input id="brand" type="text" class="form-control" name="brand" value="{{ old('brand') }}" placeholder="Clave" autofocus autocomplete="off">
+                                        <input id="brand" type="text" class="form-control" name="brand" value="{{ old('brand') }}" placeholder="" autofocus autocomplete="off">
                                         @if ($errors->has('brand'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('brand') }}</strong>
@@ -60,7 +59,7 @@
                                 <div class="form-group{{ $errors->has('inventory') ? ' has-error' : '' }}">
                                     <label for="inventory" class="col-md-2 control-label">Existencias</label>
                                     <div class="col-md-8">
-                                        <input id="inventory" type="number" class="form-control" name="inventory" value="{{ old('inventory') }}" placeholder="Ejemplo: 50" autofocus autocomplete="off">
+                                        <input id="inventory" type="number" class="form-control" name="inventory" value="{{ old('inventory') }}" placeholder="" autofocus autocomplete="off">
                                         @if ($errors->has('inventory'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('inventory') }}</strong>
@@ -71,7 +70,7 @@
                                 <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
                                     <label for="category" class="col-md-2 control-label">Categoria</label>
                                     <div class="col-md-8">
-                                        <input id="category" type="text" class="form-control" name="category" value="{{ old('category') }}" placeholder="Ejemplo: Celular" autofocus autocomplete="off">
+                                        <input id="category" type="text" class="form-control" name="category" value="{{ old('category') }}" placeholder="" autofocus autocomplete="off">
                                         @if ($errors->has('category'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('category') }}</strong>
@@ -90,19 +89,6 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                     </div>
-                @else
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Acceso denegado
-                    </div>
-                    <div class="panel-body">
-                        <div class="alert alert-danger">
-                            No tienes autorizacion para ver esta pagina.
-                            <?=redirect()->route('home');?> 
-                        </div>
-                    </div>
-                </div>
-                @endif
             @else
                 <div class="panel panel-default">
                     <div class="panel-heading">

@@ -5,18 +5,16 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Helper;
 
 class ImportController extends Controller
 {
     public function viewCatImport()
     {
-        if(Auth::user()){
-            if(Auth::user()->type==='admin'){
-                array_map('unlink', glob(resource_path('pending-files/*csv')));
-                return view('catImport');
-            }else{
-                return redirect()->route('home');
-            }
+        if(Helper::admin())
+        {
+            array_map('unlink', glob(resource_path('pending-files/*csv')));
+            return view('catImport');
         }else{
             return redirect()->route('home');
         }
@@ -24,13 +22,10 @@ class ImportController extends Controller
     
     public function viewImport()
     {
-        if(Auth::user()){
-            if(Auth::user()->type==='admin'){
-                array_map('unlink', glob(resource_path('pending-files/*csv')));
-                return view('Import');
-            }else{
-                return redirect()->route('home');
-            }
+        if(Helper::admin())
+        {
+            array_map('unlink', glob(resource_path('pending-files/*csv')));
+            return view('Import');
         }else{
             return redirect()->route('home');
         }

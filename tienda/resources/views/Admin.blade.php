@@ -13,7 +13,7 @@
                         <h4>Pagina principal</h4>
                         <a href="/custom" class="btn btn-success">Cambiar pagina principal</a>
                         <h4>Cargar Archivos</h4>
-                        <a href="/products/create" class="btn btn-success">Agregar producto</a>
+                        {{--<a href="/products/create" class="btn btn-success">Agregar producto</a>--}}
                         <a href="/categories/import" class="btn btn-success">Importar lista de categorias desde CSV</a>
                         <a href="/products/import" class="btn btn-success">Importar productos desde CSV</a>
 

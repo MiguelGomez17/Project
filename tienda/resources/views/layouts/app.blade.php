@@ -58,7 +58,7 @@
                                     <li>
                                         <a href="/Users/{{ Auth::user()->id }}">Mi perfil</a>
                                     </li>
-@if(Auth::user()->type=='admin')
+@if(Helper::admin())
                                     <li>
                                         <a class="nav-link text-light" href="/admin">Administrar</a>
                                     </li>

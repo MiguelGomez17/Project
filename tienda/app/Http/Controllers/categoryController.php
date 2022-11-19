@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\product;
 use App\categories;
 use Auth;
+use Helper;
 
 class categoryController extends Controller
 {
@@ -52,13 +53,11 @@ class categoryController extends Controller
 
     public function viewCatImage($id)
     {
-        if(Auth::user()){
-            if(Auth::user()->type=='admin'){
-                $categoria = categories::find($id);
-                if($categoria){
-                    $title = 'DICES@ | Imagen para '.$categoria->titulo;
-                    return view('CategoryImage',['categoria'=>$categoria],compact('title'));
-                }
+        if(Helper::admin()){
+            $categoria = categories::find($id);
+            if($categoria){
+                $title = 'DICES@ | Imagen para '.$categoria->titulo;
+                return view('CategoryImage',['categoria'=>$categoria],compact('title'));
             }
         }
         return redirect('home');
@@ -66,23 +65,26 @@ class categoryController extends Controller
 
     public function catEdit(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'image' => 'nullable|sometimes|max:10000'
-        ]);
-        $data = request()->all();
-        $category = categories::find($id);
-        
-        if(isset($data['image']))
+        if(Helper::admin())
         {
-            $file = $data['image'];
-            $finalPath = 'images/category/';
-            $fileName = $category['categoria'].'.png';
-            $uploadSuccess=$data['image']->move($finalPath,$fileName);
-            $category->image = ($finalPath.$fileName);
-        }else{
-            $category->image = 'images/sample/categorySample.png';
+            $validateData = $request->validate([
+                'image' => 'nullable|sometimes|max:10000'
+            ]);
+            $data = request()->all();
+            $category = categories::find($id);
+            
+            if(isset($data['image']))
+            {
+                $file = $data['image'];
+                $finalPath = 'images/category/';
+                $fileName = $category['categoria'].'.png';
+                $uploadSuccess=$data['image']->move($finalPath,$fileName);
+                $category->image = ($finalPath.$fileName);
+            }else{
+                $category->image = 'images/sample/categorySample.png';
+            }
+            $category->save();
         }
-        $category->save();
         return redirect('category/'.$category->categoria);
     }
 }
