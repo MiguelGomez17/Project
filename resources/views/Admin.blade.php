@@ -42,7 +42,7 @@
 @foreach ($Products as $Product)
                                                     <tr>
                                                         <th scope="row">{{$Product->id}}</th>
-                                                        <td><a href="/product/{{ $Product->brand }}">{{$Product->description}}</a> </td>
+                                                        <td><a href="/product/{{ $Product->brand }}">{{$Product->description}}</a></td>
                                                         <td>{{$Product->brand}}</td>
                                                         <td>{{$Product->inventory}}</td>
 @if(strpos($Product->category,','))

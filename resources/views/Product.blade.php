@@ -26,38 +26,46 @@
                             <div class="card-body">
                             <h2 class="card-title">{{ $Product->description }}</h2>
                             <h4 class="card-text">{{ $Product->brand }}</h4>
-@if(strpos($Product->category,','))
-@php($categorias = explode(',',$Product->category))
-@foreach($categorias as $categoria)
-@php($categoriaFinal = DB::table('categories')->where('categoria','=',$categoria)->get())
+    @if(strpos($Product->category,','))
+        @php($categorias = explode(',',$Product->category))
+        @foreach($categorias as $categoria)
+            @php($categoriaFinal = DB::table('categories')->where('categoria','=',$categoria)->get())
                             <a href="/category/{{ $categoria }}" class="card-text">{{ $categoriaFinal[0]->titulo }}</a><br>
-@endforeach
-@else
-@php($categoriaFinal = DB::table('categories')->where('categoria','=',$Product->category)->get())
+        @endforeach
+    @else
+        @php($categoriaFinal = DB::table('categories')->where('categoria','=',$Product->category)->get())
                             <a href="/category/{{ $Product->category }}" class="card-text">{{ $categoriaFinal[0]->titulo }}</a><br>
-@endif
+    @endif
                             <a href="https://m.me/Dicesa1?ref=Precios" target="_blank" class="btn btn-primary">
                                 Contactanos por messenger
                             </a>
                             <a href="https://api.whatsapp.com/send?phone=" target="_blank" class="btn btn-success">
                                 Contactanos por WhatsApp
                             </a>
-@if(Helper::admin())
+    @if(Helper::admin())
                                     <br>
                                     <h4>
                                         Opciones de administrador
                                     </h4>
+                                    @if($Product->featured == null)
+                                    <a href="/product/oferta/{{ $Product->brand }}">Destacar como oferta</a><br>
+                                    <a href="/product/vendido/{{ $Product->brand }}">Destacar como mas vendido</a><br>
+                                    <a href="/product/nuevo/{{ $Product->brand }}">Destacar como nuevo</a><br>
+                                    @else
+                                    <a href="/product/unload/{{ $Product->brand }}">No Destacar</a><br>
+                                    @endif
                                     <a href="/product/edit/{{ $Product->brand }}" class="btn btn-success">Editar producto</a>
                                     <a href="/product/delete/{{ $Product->brand }}" class="btn btn-danger">Eliminar producto</a>
+    @endif
                             </div>
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
-@else
+    @else
                     <div class="container">
                         <h4>Producto no disponible</h4>
                     </div>
-@endif
+    @endif
             </div>
         </div>
     </div>

@@ -41,6 +41,9 @@ class ProductsController extends Controller
 
     public function Search(Request $request){
         $texto=trim($request->get('search'));
+        $texto=trim($texto,'{');
+        $texto=trim($texto,'}');
+        $texto=trim($texto,'$');
         $categorias = DB::table('categories')
             ->where('titulo','LIKE','%'.$texto.'%')
             ->get();
@@ -170,5 +173,54 @@ class ProductsController extends Controller
         $product->category = $data['category'];
         $product->save();
         return redirect('product/'.$product->brand);
+    }
+
+    public function featureOferta($brand)
+    {
+        if(Helper::admin()){
+            $product = DB::table('products')->where('brand','=',$brand)->first();
+            $product = Product::find($product->id);
+            $product->featured = '1';
+            $product->save();
+            return redirect('product/'.$product->brand);
+        }else{
+            return redirect('home');
+        }
+    }
+    public function featureNuevo($brand)
+    {
+        if(Helper::admin()){
+            $product = DB::table('products')->where('brand','=',$brand)->first();
+            $product = Product::find($product->id);
+            $product->featured = '2';
+            $product->save();
+            return redirect('product/'.$product->brand);
+        }else{
+            return redirect('home');
+        }
+    }
+    public function featureVendio($brand)
+    {
+        if(Helper::admin()){
+            $product = DB::table('products')->where('brand','=',$brand)->first();
+            $product = Product::find($product->id);
+            $product->featured = '3';
+            $product->save();
+            return redirect('product/'.$product->brand);
+        }else{
+            return redirect('home');
+        }
+    }
+    public function featureUnload($brand)
+    {
+        if(Helper::admin()){
+            $product = DB::table('products')->where('brand','=',$brand)->first();
+            $product = Product::find($product->id);
+            $product->featured = null;
+            $product->save();
+            return redirect('product/'.$product->brand);
+        }else{
+            return redirect('home');
+        }
     }
 }

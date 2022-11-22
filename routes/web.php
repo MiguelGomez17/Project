@@ -92,6 +92,11 @@ Route::get('/product/edit/{id}', 'ProductsController@viewEdit');
 Route::any('/edit/{id}', 'ProductsController@Edit');
 Route::any('/create', 'ProductsController@Create');
 
+Route::any('/product/oferta/{brand}', 'ProductsController@featureOferta')/*->middleware('auth')*/;
+Route::any('/product/nuevo/{brand}', 'ProductsController@featureNuevo')/*->middleware('auth')*/;
+Route::any('/product/vendido/{brand}', 'ProductsController@featureVendio')/*->middleware('auth')*/;
+Route::any('/product/unload/{brand}', 'ProductsController@featureUnload')/*->middleware('auth')*/;
+
 Route::get('/product/delete/{id}', 'ProductsController@viewDelete');
 Route::get('/delete/{id}', 'ProductsController@Delete');
 

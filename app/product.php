@@ -9,7 +9,7 @@ use Helper;
 class product extends Model
 {
     protected $fillable = [
-        'description', 'price', 'brand', 'image', 'inventory', 'category'
+        'description', 'price', 'brand', 'image', 'inventory', 'category', 'featured'
     ];
 
     protected $guarded=[];
@@ -38,7 +38,8 @@ class product extends Model
                             'brand'=>$row[0],
                             'image'=>$imagen,
                             'inventory'=>$row[2],
-                            'category'=>Helper::buscar($row[0])
+                            'category'=>Helper::buscar($row[0]),
+                            'featured'=>null
                         ]);
                     }
                 }

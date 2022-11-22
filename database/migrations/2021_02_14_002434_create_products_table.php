@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('inventory');
             $table->string('category');
+            $table->integer('featured')->nullable();
             $table->timestamps();
         });
     }
