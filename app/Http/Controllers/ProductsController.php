@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\product;
 use App\categories;
+use App\featured;
 use Auth;
 use Helper;
 
@@ -178,11 +179,21 @@ class ProductsController extends Controller
     public function featureOferta($brand)
     {
         if(Helper::admin()){
-            $product = DB::table('products')->where('brand','=',$brand)->first();
-            $product = Product::find($product->id);
-            $product->featured = '1';
-            $product->save();
-            return redirect('product/'.$product->brand);
+            $featured = DB::table('featureds')->where('Menu','=','Ofertas')->first();
+            if($featured && $featured->Menu)
+            {
+                if($featured->Menu == 'Ofertas' && !(str_contains($featured->Productos, $brand))){
+                    $feature = Featured::find($featured->id);
+                    $feature->Productos .= $brand.',';
+                    $feature->save();
+                }
+            }else{
+                $feature = new featured();
+                $feature->Menu = 'Ofertas';
+                $feature->Productos = $brand.',';
+                $feature->save();
+            }
+            return redirect('product/'.$brand);
         }else{
             return redirect('home');
         }
@@ -190,11 +201,21 @@ class ProductsController extends Controller
     public function featureNuevo($brand)
     {
         if(Helper::admin()){
-            $product = DB::table('products')->where('brand','=',$brand)->first();
-            $product = Product::find($product->id);
-            $product->featured = '2';
-            $product->save();
-            return redirect('product/'.$product->brand);
+            $featured = DB::table('featureds')->where('Menu','=','Nuevos')->first();
+            if($featured && $featured->Menu)
+            {
+                if($featured->Menu == 'Nuevos' && !(str_contains($featured->Productos, $brand))){
+                    $feature = Featured::find($featured->id);
+                    $feature->Productos .= $brand.',';
+                    $feature->save();
+                }
+            }else{
+                $feature = new featured();
+                $feature->Menu = 'Nuevos';
+                $feature->Productos = $brand.',';
+                $feature->save();
+            }
+            return redirect('product/'.$brand);
         }else{
             return redirect('home');
         }
@@ -202,11 +223,21 @@ class ProductsController extends Controller
     public function featureVendio($brand)
     {
         if(Helper::admin()){
-            $product = DB::table('products')->where('brand','=',$brand)->first();
-            $product = Product::find($product->id);
-            $product->featured = '3';
-            $product->save();
-            return redirect('product/'.$product->brand);
+            $featured = DB::table('featureds')->where('Menu','=','Vendidos')->first();
+            if($featured && $featured->Menu)
+            {
+                if($featured->Menu == 'Vendidos' && !(str_contains($featured->Productos, $brand))){
+                    $feature = Featured::find($featured->id);
+                    $feature->Productos .= $brand.',';
+                    $feature->save();
+                }
+            }else{
+                $feature = new featured();
+                $feature->Menu = 'Vendidos';
+                $feature->Productos = $brand.',';
+                $feature->save();
+            }
+            return redirect('product/'.$brand);
         }else{
             return redirect('home');
         }
@@ -214,11 +245,14 @@ class ProductsController extends Controller
     public function featureUnload($brand)
     {
         if(Helper::admin()){
-            $product = DB::table('products')->where('brand','=',$brand)->first();
-            $product = Product::find($product->id);
-            $product->featured = null;
-            $product->save();
-            return redirect('product/'.$product->brand);
+            $featured = DB::table('featureds')->get();
+            foreach($featured as $feature){
+                if(str_contains($feature->Productos,$brand)){
+                    $new = str_replace($brand.',','',$feature->Productos);
+                    DB::table('featureds')->where('id', $feature->id)->update(['Productos' => $new]);
+                }
+            }
+            return redirect('product/'.$brand);
         }else{
             return redirect('home');
         }

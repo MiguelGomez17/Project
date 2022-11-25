@@ -54,31 +54,21 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($productsOferta as $product)
-                                @if($product->inventory>0)
-                                    <div class="col-sm-4">
+                                @php($Producto = DB::table('products')->where('brand','=',$product)->get())
+                                @foreach($Producto as $Muestra)
+                                <div class="col-sm-4">
                                         <div class="card border-dark" style="max-width: 22rem;">
                                             <div class="card-body">
-                                                <a href="/product/{{ $product->brand }}"><h5 class="card-title">{{ $product->description }}</h5></a>
+                                                <a href="/product/{{ $Muestra->brand }}"><h5 class="card-title">{{ $Muestra->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                    <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
+                                                    <a href="/product/{{ $Muestra->brand }}"><img class="card-img-top" src="{{ $Muestra->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
                                                 </div>
-                                                {{--
-                                                @if(strpos($product->category,','))
-                                                @php($categorias = explode(',',$product->category))
-                                                @foreach($categorias as $categoria)
-                                                <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
-                                                @endforeach
-                                                @else
-                                                <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                                @endif
-                                                --}}
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                @endforeach
                             @endforeach
                         </div>
-                        {{ $productsOferta->links() }}
                     </div>
                 </div>
                 <div class="panel-heading">Lo mas vendido</div>
@@ -86,31 +76,21 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($productsVendidos as $product)
-                                @if($product->inventory>0)
-                                    <div class="col-sm-4">
+                                @php($Producto = DB::table('products')->where('brand','=',$product)->get())
+                                @foreach($Producto as $Muestra)
+                                <div class="col-sm-4">
                                         <div class="card border-dark" style="max-width: 22rem;">
                                             <div class="card-body">
-                                                <a href="/product/{{ $product->brand }}"><h5 class="card-title">{{ $product->description }}</h5></a>
+                                                <a href="/product/{{ $Muestra->brand }}"><h5 class="card-title">{{ $Muestra->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
+                                                    <a href="/product/{{ $Muestra->brand }}"><img class="card-img-top" src="{{ $Muestra->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
                                                 </div>
-                                                {{--
-                                                @if(strpos($product->category,','))
-                                                @php($categorias = explode(',',$product->category))
-                                                @foreach($categorias as $categoria)
-                                                <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
-                                                @endforeach
-                                                @else
-                                                <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                                @endif
-                                                --}}
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                @endforeach
                             @endforeach
                         </div>
-                        {{ $productsVendidos->links() }}
                     </div>
                 </div>
                 <div class="panel-heading">Lo mas nuevo</div>
@@ -118,31 +98,21 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($productsNuevo as $product)
-                                @if($product->inventory>0)
-                                    <div class="col-sm-4">
-                                        <div class="card" style="width: 22rem;">
-                                            <div class="card-body border-dark">
-                                                <a href="/product/{{ $product->brand }}"><h5 class="card-title">{{ $product->description }}</h5></a>
+                                @php($Producto = DB::table('products')->where('brand','=',$product)->get())
+                                @foreach($Producto as $Muestra)
+                                <div class="col-sm-4">
+                                        <div class="card border-dark" style="max-width: 22rem;">
+                                            <div class="card-body">
+                                                <a href="/product/{{ $Muestra->brand }}"><h5 class="card-title">{{ $Muestra->description }}</h5></a>
                                                 <div class="text-center" style="height: 22rem; width: auto;">
-                                                <a href="/product/{{ $product->brand }}"><img class="card-img-top" src="{{ $product->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
+                                                    <a href="/product/{{ $Muestra->brand }}"><img class="card-img-top" src="{{ $Muestra->image }}" alt="Card image cap" style="height: auto; max-width: 95%; max-height: 95%;"></a>
                                                 </div>
-                                                {{--
-                                                @if(strpos($product->category,','))
-                                                @php($categorias = explode(',',$product->category))
-                                                @foreach($categorias as $categoria)
-                                                <a href="/category/{{ $categoria }}" class="card-text">{{ $categoria }}</a><br>
-                                                @endforeach
-                                                @else
-                                                <a href="/category/{{ $product->category }}" class="card-text">{{ $product->category }}</a><br>
-                                                @endif
-                                                --}}
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                @endforeach
                             @endforeach
                         </div>
-                        {{ $productsNuevo->links() }}
                     </div>
                 </div>
                 {{--<div class="panel-heading"></div>

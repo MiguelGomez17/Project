@@ -35,12 +35,15 @@ class HomeController extends Controller
         //$productsNuevo = DB::table('products')->where('inventory','>',0)->where('brand','LIKE','ADG%')->orderBy('price', 'desc')->simplePaginate(6, ['*'], 'Nuevos');
         //$productsVendidos = DB::table('products')->where('inventory','>',0)->where('brand','LIKE','ACB%')->orderBy('price','desc')->simplePaginate(6, ['*'], 'Vendidos');
         
-        $productsOferta = DB::table('products')->where('inventory','>',0)->where('featured','=','1')->orderBy('price', 'asc')->simplePaginate(6, ['*'], 'Ofertas');
-        $productsNuevo = DB::table('products')->where('inventory','>',0)->where('featured','=','2')->orderBy('price', 'desc')->simplePaginate(6, ['*'], 'Nuevos');
-        $productsVendidos = DB::table('products')->where('inventory','>',0)->where('featured','=','3')->orderBy('price','desc')->simplePaginate(6, ['*'], 'Vendidos');
-        return view('home', ['productsOferta' => $productsOferta,
-                                'productsNuevo' => $productsNuevo,
-                                'productsVendidos' => $productsVendidos,
+        $productsOfertas = DB::table('featureds')->where('Menu','=','Ofertas')->get();
+        $productsVendidos = DB::table('featureds')->where('Menu','=','Vendidos')->get();
+        $productsNuevos = DB::table('featureds')->where('Menu','=','Nuevos')->get();
+        $Ofertas = explode(',',$productsOfertas[0]->Productos);
+        $Vendidos = explode(',',$productsVendidos[0]->Productos);
+        $Nuevos = explode(',',$productsNuevos[0]->Productos);
+        return view('home', ['productsOferta' => $Ofertas,
+                                'productsNuevo' => $Nuevos,
+                                'productsVendidos' => $Vendidos,
                                 'bannerImages' => $bannerImages,
                                 'defaultImage' => $defaultImage]);
     }

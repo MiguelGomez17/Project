@@ -47,7 +47,7 @@
                                     <h4>
                                         Opciones de administrador
                                     </h4>
-                                    @if($Product->featured == null)
+                                    @if(!Helper::destacado($Product->brand))
                                     <a href="/product/oferta/{{ $Product->brand }}">Destacar como oferta</a><br>
                                     <a href="/product/vendido/{{ $Product->brand }}">Destacar como mas vendido</a><br>
                                     <a href="/product/nuevo/{{ $Product->brand }}">Destacar como nuevo</a><br>
