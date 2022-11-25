@@ -41,7 +41,7 @@ class HomeController extends Controller
         $Ofertas = explode(',',$productsOfertas[0]->Productos);
         $Vendidos = explode(',',$productsVendidos[0]->Productos);
         $Nuevos = explode(',',$productsNuevos[0]->Productos);
-        return view('home', ['productsOferta' => $Ofertas,
+        return view('Home', ['productsOferta' => $Ofertas,
                                 'productsNuevo' => $Nuevos,
                                 'productsVendidos' => $Vendidos,
                                 'bannerImages' => $bannerImages,
