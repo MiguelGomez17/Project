@@ -110,4 +110,5 @@ Route::get('/mail', function(){
 //Auth::routes();
 Route::prefix('Gn2RM01hdT10CbhasDL/')->group(function(){
     Auth::routes();
+    Auth::routes(['register' => false]);
 });

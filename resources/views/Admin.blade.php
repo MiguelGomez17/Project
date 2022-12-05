@@ -13,7 +13,6 @@
                         <h4>Pagina principal</h4>
                         <a href="/custom" class="btn btn-success">Cambiar pagina principal</a>
                         <h4>Cargar Archivos</h4>
-                        {{--<a href="/products/create" class="btn btn-success">Agregar producto</a>--}}
                         <a href="/categories/import" class="btn btn-success">Importar lista de categorias desde CSV</a>
                         <a href="/products/import" class="btn btn-success">Importar productos desde CSV</a>
 
@@ -31,20 +30,24 @@
                                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                                 <thead>
                                                     <tr role="row">
-                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">#</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">Nombre</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">Clave</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">Existencias</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending">Categoria</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por Clave">Clave</th>    
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por nombre">Nombre</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por existencias">Existencias</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por existencias">Imagen</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por categoria">Categoria</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-@foreach ($Products as $Product)
+@foreach($Products as $Product)
                                                     <tr>
-                                                        <th scope="row">{{$Product->id}}</th>
-                                                        <td><a href="/product/{{ $Product->brand }}">{{$Product->description}}</a></td>
                                                         <td>{{$Product->brand}}</td>
+                                                        <td><a href="/product/{{ $Product->brand }}">{{$Product->description}}</a></td>
                                                         <td>{{$Product->inventory}}</td>
+@if(strpos($Product->image,'Sample'))
+                                                        <td>No</td>
+@else
+                                                        <td>Si</td>
+@endif
 @if(strpos($Product->category,','))
 @php($categorias = explode(',',$Product->category))
                                                         <td>

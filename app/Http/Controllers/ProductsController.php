@@ -28,7 +28,7 @@ class ProductsController extends Controller
     public function viewProducts()
     {
         $Products = DB::table('products')
-            ->where('image','=', 'images/sample/productSample.png')
+            //->where('image','=', 'images/sample/productSample.png')
             //->where('category','=', '000')
             ->where('inventory','>', '0')
             ->paginate(25);
