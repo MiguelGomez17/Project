@@ -54,7 +54,7 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($productsOferta as $product)
-                                @php($Producto = DB::table('products')->where('brand','=',$product)->get())
+                                @php($Producto = DB::table('products')->where('inventory','>','0')->where('brand','=',$product)->get())
                                 @foreach($Producto as $Muestra)
                                 <div class="col-sm-4">
                                         <div class="card border-dark" style="max-width: 22rem;">
@@ -76,7 +76,7 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($productsVendidos as $product)
-                                @php($Producto = DB::table('products')->where('brand','=',$product)->get())
+                                @php($Producto = DB::table('products')->where('inventory','>','0')->where('brand','=',$product)->get())
                                 @foreach($Producto as $Muestra)
                                 <div class="col-sm-4">
                                         <div class="card border-dark" style="max-width: 22rem;">
@@ -98,7 +98,7 @@
                     <div class="container">
                         <div class="row">
                             @foreach ($productsNuevo as $product)
-                                @php($Producto = DB::table('products')->where('brand','=',$product)->get())
+                                @php($Producto = DB::table('products')->where('inventory','>','0')->where('brand','=',$product)->get())
                                 @foreach($Producto as $Muestra)
                                 <div class="col-sm-4">
                                         <div class="card border-dark" style="max-width: 22rem;">

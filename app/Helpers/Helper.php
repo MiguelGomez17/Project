@@ -54,6 +54,7 @@ class Helper
         }
         return false;
     }
+    
     public static function Producto($product){
         $Producto = DB::table('products')->where('brand','=',$product)->get();
         return $Producto[0];

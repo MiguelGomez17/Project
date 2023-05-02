@@ -26,6 +26,8 @@
                             <div class="card-body">
                             <h2 class="card-title">{{ $Product->description }}</h2>
                             <h4 class="card-text">{{ $Product->brand }}</h4>
+                            {{-- <h3 class="card-text">${{ $Product->price }}.00</h3> --}}
+                            <h3 class="card-text">Pregunta por nuestros precios</h3>
     @if(strpos($Product->category,','))
         @php($categorias = explode(',',$Product->category))
         @foreach($categorias as $categoria)

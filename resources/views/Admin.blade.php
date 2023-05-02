@@ -30,7 +30,8 @@
                                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                                 <thead>
                                                     <tr role="row">
-                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por Clave">Clave</th>    
+                                                        <th tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">#</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por Clave">Clave</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por nombre">Nombre</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por existencias">Existencias</th>
                                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Ordenar por existencias">Imagen</th>
@@ -40,6 +41,7 @@
                                                 <tbody>
 @foreach($Products as $Product)
                                                     <tr>
+                                                        <td><a href="/product/edit/{{ $Product->brand }}" target="_blank">Editar</a></td>
                                                         <td>{{$Product->brand}}</td>
                                                         <td><a href="/product/{{ $Product->brand }}">{{$Product->description}}</a></td>
                                                         <td>{{$Product->inventory}}</td>
