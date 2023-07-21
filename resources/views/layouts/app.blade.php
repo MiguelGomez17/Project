@@ -103,7 +103,9 @@
                             <ul class="dropdown-menu">
 @foreach($category as $categoria)
 @if(($categoria->categoria > $actual) && ($categoria->categoria < $actual+100))
-                                <li><a href="/category/{{$categoria->categoria}}">{{$categoria->titulo}}</a></li>
+@if(Helper::hasProducts($categoria->categoria) != '[]')
+                                <li><a href="/category/{{$categoria->categoria}}">{{$categoria->titulo}} </a></li>
+@endif
 @endif
 @endforeach
                             </ul>

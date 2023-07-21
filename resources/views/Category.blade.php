@@ -25,6 +25,16 @@
                                 </div>
                             </div>
                         @endif
+                        @if($categoria->categoria == '000')
+                        <h2>¿Buscabas otra cosa?</h2>
+                        <h3>¡Comunicate con nosotros y con gusto te ayudamos a buscarlo!</h3>
+                        <a href="https://m.me/Dicesa1?ref=Precios" target="_blank" class="btn btn-primary">
+                                Contactanos por messenger
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=" target="_blank" class="btn btn-success">
+                            Contactanos por WhatsApp
+                        </a>
+                        @endif
                         @foreach ($products as $product)
                             @if($product->inventory > 0)
                                 <div class="container">
