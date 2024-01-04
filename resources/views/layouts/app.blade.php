@@ -177,11 +177,8 @@
                     Contacto
                     </h6>
                     <p><i class="fas fa-home me-3"></i> Av. 20 de Noviembre 117 Pte.<br>Casi esquina Progreso.<br>Durango, Dgo.</p>
-                    <p>
-                    <i class="fas fa-envelope me-3"></i>
-                    dicesa1@hotmail.com
-                    </p>
-                    <p><i class="fas fa-phone me-3"></i> 812 07 50</p>
+                    <p><i class="fas fa-envelope me-3"></i> <a href="mailto:dicesa1@hotmail.com">dicesa1@hotmail.com</a></p>
+                    <p><i class="fas fa-phone me-3"></i> 618 812 07 50</p>
                 </div>
                 <!-- Grid column -->
                 </div>
