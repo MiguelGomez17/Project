@@ -19,7 +19,7 @@ class ProductsController extends Controller
         $Product = DB::table('products')->where('brand','=',$brand)->first();
         if($Product){
             if(($Product->inventory>0)||(Helper::admin())){
-                $title = 'DICES@ | '.$Product->description;
+                $title = 'DICESA | '.$Product->description;
                 return view('Product',['Product'=>$Product], compact('title'));
             }
         }
@@ -53,7 +53,7 @@ class ProductsController extends Controller
             ->where('description','LIKE','%'.$texto.'%')
             ->orwhere('brand','LIKE','%'.$texto.'%')
             ->get();
-        $title = 'DICES@ | '.$texto;
+        $title = 'DICESA | '.$texto;
         return view('Search',['resultados'=>$resultado,'categorias'=>$categorias, 'Busqueda'=>$texto], compact('title'));
     }
 
@@ -108,7 +108,7 @@ class ProductsController extends Controller
         if(Helper::admin()){
             $Product = DB::table('products')->where('brand','=',$brand)->first();
             if($Product){
-                $title = 'DICES@ | Eliminar '.$Product->brand;
+                $title = 'DICESA | Eliminar '.$Product->brand;
                 return view('Delete',['Product'=>$Product], compact('title'));
             }
         }
@@ -131,7 +131,7 @@ class ProductsController extends Controller
         if(Helper::admin()){
             $Product = DB::table('products')->where('brand','=',$brand)->first();
             if($Product){
-                $title = 'DICES@ | Editar '.$Product->brand;
+                $title = 'DICESA | Editar '.$Product->brand;
                 return view('EditProduct',['Product'=>$Product],compact('title'));
             }
         }

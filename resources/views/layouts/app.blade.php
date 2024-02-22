@@ -45,10 +45,9 @@
                     <ul class="nav navbar-nav navbar-left">
                         <!-- Authentication Links -->
 @guest
-                            <li><a href="">¡Bienvenido!</a></li>
-                        {{--<li><a href="{{ route('login') }}">Inicia sesion</a></li>
-                            <li><a href="{{ route('register') }}">Registrate</a></li>--}}
+                            <li><a href="/home">Ir a inicio</a></li>
 @else
+                            <li><a href="/home">Ir a inicio</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     ¡Bienvenido {{ strtok((Auth::user()->name), ' ')  }}! <span class="caret"></span>
@@ -98,7 +97,7 @@
 @php($actual = $categoria->categoria)
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                {{ucwords(mb_strtolower($categoria->titulo))}}<span class="caret"></span>
+                                {{ucfirst(mb_strtolower($categoria->titulo))}}<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
 @foreach($category as $categoria)
@@ -113,7 +112,7 @@
 @elseif($categoria->categoria == 000)
                         <li class="">
                             <a href="/category/{{$categoria->categoria}}">
-                                {{ucwords(strtolower($categoria->titulo))}}
+                                {{ucfirst(strtolower($categoria->titulo))}}
                             </a>
                         </li>
 @endif

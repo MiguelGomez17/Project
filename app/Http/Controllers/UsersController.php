@@ -19,7 +19,7 @@ class UsersController extends Controller
                 $Pedidos = Pedido::where('userid', $id)->paginate(10);
                 $Productos = product::all();
                 if($User){
-                    $title = 'DICES@ | '.$User->name;
+                    $title = 'DICESA | '.$User->name;
                     return view('Users',['Usuario'=>$User,'Pedidos'=>$Pedidos,'Products'=>$Productos], compact('title'));
                 }else{
                     return redirect()->route('home');

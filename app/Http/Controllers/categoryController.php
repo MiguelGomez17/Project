@@ -42,7 +42,7 @@ class categoryController extends Controller
                             }
                         }
                     }
-                    $title = 'DICES@ | '.$categoria->titulo;
+                    $title = 'DICESA | '.$categoria->titulo;
                     return view('Category',['products'=>$Products,'categoria'=>$categoria], compact('title'));
                 }
             }
@@ -56,7 +56,7 @@ class categoryController extends Controller
         if(Helper::admin()){
             $categoria = categories::find($id);
             if($categoria){
-                $title = 'DICES@ | Imagen para '.$categoria->titulo;
+                $title = 'DICESA | Imagen para '.$categoria->titulo;
                 return view('CategoryImage',['categoria'=>$categoria],compact('title'));
             }
         }

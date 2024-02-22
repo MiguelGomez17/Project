@@ -9,6 +9,7 @@
                 <div class="panel-body">
                     <div class="alert alert-info">
                         Pregunta por nuestros precios en <a href="https://www.facebook.com/dicesa1" target="_blank"><strong>Facebook</strong></a><br>
+                        Al telefono <strong>618 812 07 50</strong><br>
                         <a href="/ubicacion"><strong>Acuda a la tienda</strong></a> para realizar compras.
                     </div>
                     <div class="container" style="max-width: 95%">
@@ -30,9 +31,9 @@
                                     @endif
                                         <div class="text-center">
                                             @if($banner->file != '')
-                                            <img src="{{asset($banner->file)}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
+                                            <img src="{{asset($banner->file)}}" class="img-fluid" width="50%" alt="Error al cargar imagen">
                                             @else
-                                            <img src="{{$defaultImage}}" class="img-fluid" width="100%" alt="Error al cargar imagen">
+                                            <img src="{{$defaultImage}}" class="img-fluid" width="50%" alt="Error al cargar imagen">
                                             @endif
                                         </div>
                                     </div>
